@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ListaProductoController;
 use App\Http\Controllers\ListaDocumentosController;
 use App\Http\Controllers\CrearCreditoController;
+use App\Http\Controllers\ProductoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,14 +17,11 @@ use App\Http\Controllers\CrearCreditoController;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('listaProductos', ListaProductoController::class);
+Route::get('listaProductos', ListaProductoController::class)->name('listaP');
 Route::get('listaDocumentos',ListaDocumentosController::class);
 Route::get('listaDocumentos/{idTipo_Documento}',ListaDocumentosController::class);
 Route::get('crearCredito',CrearCreditoController::class);

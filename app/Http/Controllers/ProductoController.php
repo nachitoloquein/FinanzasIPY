@@ -70,7 +70,15 @@ class ProductoController extends Controller
     {
         
         $producto = Producto::find($id);
-        return view('Producto.modificarP',compact('producto'));
+        if ($producto == null){
+            $productos = \DB::table('producto')
+            ->select('producto.*')
+            ->orderBy('idProducto')
+            ->get();
+            echo "<script>alert('Producto no encontrado');</script>";
+            return view('dashboards.listaProductos',compact('productos'));
+        }
+            return view('Producto.modificarP',compact('producto'));
     }
 
     /**
@@ -86,7 +94,11 @@ class ProductoController extends Controller
         $producto->Precio=$request->Precio;
         $producto->save();
 
-        return redirect()->route('home');
+        if ($producto == null){
+            return view('error');
+        }
+
+        return redirect()->route('listaP');
     }
 
     /**

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<table class="table table-responsive" style="text-align:center;">
+<table class="table table-responsive" class="card" style="text-align:center;" >
   <thead>
     <tr>
       <th scope="col">ID</th>
@@ -15,9 +15,9 @@
       <th>Acciones</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
     @foreach($productos as $producto)
+    <tbody>
+      <tr>
       <td>{{ $producto->idProducto }}</td>
       <td>{{ $producto->Nombre_producto }}</td>
       <td>{{ $producto->Peso }}</td>
@@ -27,11 +27,10 @@
       <td>{{ $producto->Descripcion }}</td>
       <td>{{ $producto->Stock }}</td>
       <td>
-        <button class="btn btn-success"><i class="fa"></i>Modificar precio</button>
+        <button class="btn btn-success" onclick="location.href = '{{ route('edit',$producto->idProducto) }}'"><i class="fa"></i>Modificar precio</button>
       </td>
-    @endforeach
     </tr>
-
   </tbody>
+      @endforeach
 </table>
 @endsection
