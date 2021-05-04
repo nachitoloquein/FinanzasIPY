@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\agregarPController;
-use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\ListaProductoController;
+use App\Http\Controllers\ListaDocumentosController;
+use App\Http\Controllers\CrearCreditoController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,8 +22,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('listaProductos', ListaProductoController::class);
+Route::get('listaDocumentos',ListaDocumentosController::class);
+Route::get('listaDocumentos/{idTipo_Documento}',ListaDocumentosController::class);
+Route::get('crearCredito',CrearCreditoController::class);
 Route::get('/agregarp',[ProductoController::class,'create'])->name('agregarp');
 Route::post('/agregarp',[ProductoController::class,'store'])->name('agregarp.lista');
 Route::get('/modificarp/{id}',[ProductoController::class,'edit'])->name('edit');
 Route::patch('/modificarp/producto/{id}', [ProductoController::class,'update'])->name('update');
+
