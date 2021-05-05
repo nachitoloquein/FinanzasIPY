@@ -17,5 +17,4 @@ class ListaDocumentosController extends Controller
                     ->get();
     return view('/dashboards/listaDocumentos',compact('documentos','tipos'));
     }
-
 }
