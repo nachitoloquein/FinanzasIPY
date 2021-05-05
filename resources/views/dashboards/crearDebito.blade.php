@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<body>
-<h1 class =" d-flex justify-content-center">Nota de crédito</h1>
+<h1 class =" d-flex justify-content-center">Nota de débito</h1>
 <div class = "card d-flex align-items-center" style="padding:10px;">
 <div class="input-group mb-3"style="width:50%">
   <span class="input-group-text" id="basic-addon1">Número de nota</span>
@@ -61,11 +60,9 @@
 
 </div>
 <div style="margin:10px;">
-<button type="button" class = "btn btn-success">Crear nota de crédito</button>
+<button type="button" class = "btn btn-success">Crear nota de débito</button>
 <button type="button" class = "btn btn-danger">Cancelar</button>
 </div>
 </div>
-</body>
-
 
 @endsection
