@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class ProductoController extends Controller
 {
     /**
@@ -71,7 +71,7 @@ class ProductoController extends Controller
         
         $producto = Producto::find($id);
         if ($producto == null){
-            $productos = \DB::table('producto')
+            $productos = DB::table('producto')
             ->select('producto.*')
             ->orderBy('idProducto')
             ->get();

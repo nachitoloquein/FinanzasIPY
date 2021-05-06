@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Documento;
 use App\Models\tipo_movimiento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HistorialController extends Controller
 {
@@ -12,10 +14,18 @@ class HistorialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $producto = tipo_movimiento::all();
-        return view('historial.vista');
+        
+        if ($request) {
+            $mov = tipo_movimiento::all();
+            $datas = trim($request->get('buscar'));
+            $movimiento = DB::table('documento')
+            ->join('tipo_movimiento', 'documento.Tipo_Movimiento_idTipo_Movimiento', '=', 'tipo_movimiento.idTipo_Movimiento')
+            ->select('idDocumento','Numero_Documento','Valor_Total','Precio','Fecha_emision','DescripcionM','Tipo_Documento_idTipo_Documento')
+            ->where('idTipo_Movimiento','LIKE','%' . $datas . '%')->get();
+            return view('historial.vista',compact('datas','movimiento','mov'));
+        }
     }
 
     /**
@@ -23,10 +33,6 @@ class HistorialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.

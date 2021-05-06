@@ -6,6 +6,14 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+ .barra{
+  height: 100vh;
+}
+.centro{
+  margin:0 auto;
+  margin-top:15%;
+  padding: 0;
+}
 :root {
   --blue: #3490dc;
   --indigo: #6574cd;
@@ -10001,4 +10009,5 @@ h3 {
     color: inherit;
     border-color: #dee2e6;
   }
+
 }

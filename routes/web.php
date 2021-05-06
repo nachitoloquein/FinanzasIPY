@@ -4,13 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ListaProductoController;
 use App\Http\Controllers\ListaDocumentosController;
 use App\Http\Controllers\CrearCreditoController;
+use App\Http\Controllers\crearDebitoController;
 use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\lobyController;
 use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Auth;
-
-use App\Http\Controllers\crearDebitoController;
 use App\Http\Controllers\PaginaPrincipalController;
 /*
 |--------------------------------------------------------------------------
@@ -29,14 +28,12 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/listaProductos', ListaProductoController::class)->name('listaP');
-
+Route::get('/listaDocumentos',ListaDocumentosController::class)->name('documentos');
+Route::get('/listaDocumentos',ListaDocumentosController::class);
+Route::get('/listaDocumentos/{idTipo_Documento}',ListaDocumentosController::class);
+Route::get('/listaDocumentos/{idTipo_Documento}',[ListaDocumentosController::class,'filtro']);
 Route::get('/crearCredito',CrearCreditoController::class);
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('listaDocumentos',ListaDocumentosController::class)->name('documentos');
-/*Route::get('listaDocumentos/{tipo}',[ListaDocumentosController::class,'__invoke']);*/
-
-Route::get('crearDebito',crearDebitoController::class);
+Route::get('/crearDebito',crearDebitoController::class);
 Route::get('/agregarp',[ProductoController::class,'create'])->name('agregarp');
 Route::post('/agregarp',[ProductoController::class,'store'])->name('agregarp.lista');
 Route::get('/modificarp/{id}',[ProductoController::class,'edit'])->name('edit');

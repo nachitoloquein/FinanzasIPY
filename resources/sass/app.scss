@@ -6,3 +6,17 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+*{
+ height: 100%;   
+}
+
+.centro{
+    margin:0 auto;
+    margin-top:15%;
+    padding: 0;
+}
+
+.barra{
+    height: 100vh;
+}
