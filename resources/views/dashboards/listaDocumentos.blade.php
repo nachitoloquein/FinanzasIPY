@@ -1,20 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="input-group mb-3">
-<div class="form-row">
-    <div class="form-group col-md-4">
-   <label style="min-width:200px;">Filtro por tipo</label>
 
-      <select id='select'  class="form-control" style="min-width:200px;">
-        <option selected >Seleccione...</option>
-        @foreach($tipos as $tipos)
-            <option value="{{ $tipos->idTipo_Documento }}">{{ $tipos->Descripcion }}</option>
-        @endforeach
-      </select>
-      <input class="btn btn-primary " type="submit" value="Aplicar">
+<div class="input-group mb-3">
+<div class="form-row d-flex">
+<form class="form-group col-md-4" action="{{route('documentos')}}" method="GET">
+    <div class="form-group col-md-4">
+    <div class = "d-flex">
+    <label style="min-width:200px;">Filtro por tipo de documento</label>
+    <select name='select' id='select' value= "{{$tipo}}" class="form-control" style="min-width:200px;">
+    <option selected >Seleccione...</option>
+    @foreach($tipos as $tipos)
+        <option value="{{ $tipos->idTipo_Documento }}">{{ $tipos->Descripcion }}</option>
+    @endforeach
+    </select>
+    </div>
+    <div class = "d-flex">
+    <label style="min-width:200px;">Filtro por estado</label>
+    <select name='estado' id='estad' value= "{{$tipoE}}" class="form-control" style="min-width:200px;">
+    <option selected >Seleccione...</option>
+    @foreach($tiposE as $tiposE)
+        <option value="{{ $tiposE->idEstado }}">{{ $tiposE->DescripcionE }}</option>
+    @endforeach
+    </select>
+    </div>
+    <input class="btn btn-primary " type="submit" value="Aplicar">
+    </form>
     </div>
   </div>
+  
 <table class="table table-responsive">
     <thead>
         <tr>
@@ -25,6 +39,7 @@
         <th>IVA</th>
         <th>Tipo de documento</th>
         <th>Tipo de movimiento</th>
+        <th>Estado documento</th>
         <th>Acciones</th>
         </tr>
     </thead>
@@ -38,13 +53,23 @@
                 <td>{{ $documento->Iva }}</td>
                 <td>{{ $documento->Descripcion }}</td>
                 <td>{{ $documento->DescripcionM }}</td>
+                <td>{{ $documento->DescripcionE }}</td>
                 <td>
                     <a class="btn btn-success" href="/crearCredito/"><i class="fa"></i>Crear nota de crédito</a>
                     <a class="btn btn-success" href="/crearDebito/"><i class="fa"></i>Crear nota de débito</a>
+                    
+                    <?php
+                        $display = "d-none";
+                        if( $documento->Estado_Venta_idEstado_Venta == 4 ){
+                            $display = "d-inline-block";
+                            
+                        }
+                    ?>
+                    <a class="btn btn-primary {{$display}}" href="/crearDebito/"><i class="fa"></i>Crear pago</a>
                 </td>
-
+                </tr>
             @endforeach
-        </tr>
+        
     </tbody>
 </table>
 @endsection
