@@ -28,10 +28,8 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/listaProductos', ListaProductoController::class)->name('listaP');
-Route::get('/listaDocumentos',ListaDocumentosController::class)->name('documentos');
-Route::get('/listaDocumentos',ListaDocumentosController::class);
-Route::get('/listaDocumentos/{idTipo_Documento}',ListaDocumentosController::class);
-Route::get('/listaDocumentos/{idTipo_Documento}',[ListaDocumentosController::class,'filtro']);
+Route::get('listaDocumentos',ListaDocumentosController::class)->name('documentos');
+Route::get('listaDocumentos/{tipo}',[ListaDocumentosController::class,'__invoke']);
 Route::get('/crearCredito',CrearCreditoController::class);
 Route::get('/crearDebito',crearDebitoController::class);
 Route::get('/agregarp',[ProductoController::class,'create'])->name('agregarp');
