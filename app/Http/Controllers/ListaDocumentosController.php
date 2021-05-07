@@ -44,7 +44,7 @@ class ListaDocumentosController extends Controller
                     ->select('documento.*', 'tipo_documento.Descripcion','tipo_movimiento.DescripcionM','estado.DescripcionE')
                     ->where('documento.tipo_documento_idTipo_Documento','=',$tipo)
                     ->where('documento.Estado_Venta_idEstado_Venta','=', $tipoE)
-                    ->where('documento.Tipo_Documento_idTipo_Documento','=', $tipoM)
+                    ->where('documento.Tipo_Movimiento_idTipo_Movimiento','=', $tipoM)
                     ->orderBy('idDocumento')
                     ->get();
             
@@ -84,25 +84,14 @@ class ListaDocumentosController extends Controller
             
         }
 
-        else if($tipo == 'Seleccione...' &&$tipoE == 'Seleccione...' && $tipoM != '0'){
-            $documentos = DB::table('documento')
-                    ->join('tipo_documento','documento.tipo_documento_idTipo_Documento','=','tipo_documento.idTipo_Documento')
-                    ->join('estado','documento.Estado_Venta_idEstado_Venta','=','idestado')
-                    ->join('tipo_movimiento','documento.tipo_movimiento_idTipo_movimiento','=','tipo_movimiento.idTipo_movimiento')
-                    ->select('documento.*', 'tipo_documento.Descripcion','tipo_movimiento.DescripcionM','estado.DescripcionE')
-                    ->where('documento.Tipo_Documento_idTipo_Documento','=', $tipoM)
-                    ->orderBy('idDocumento')
-                    ->get();
-            
-            
-        }
+        
         else if($tipo != '0' &&$tipoE == 'Seleccione...' && $tipoM != '0'){
             $documentos = DB::table('documento')
                     ->join('tipo_documento','documento.tipo_documento_idTipo_Documento','=','tipo_documento.idTipo_Documento')
                     ->join('estado','documento.Estado_Venta_idEstado_Venta','=','idestado')
                     ->join('tipo_movimiento','documento.tipo_movimiento_idTipo_movimiento','=','tipo_movimiento.idTipo_movimiento')
                     ->select('documento.*', 'tipo_documento.Descripcion','tipo_movimiento.DescripcionM','estado.DescripcionE')
-                    ->where('documento.Tipo_Documento_idTipo_Documento','=', $tipoM)
+                    ->where('documento.Tipo_Movimiento_idTipo_Movimiento','=', $tipoM)
                     ->where('documento.tipo_documento_idTipo_Documento','=',$tipo)
                     ->orderBy('idDocumento')
                     ->get();
@@ -116,7 +105,7 @@ class ListaDocumentosController extends Controller
                     ->join('tipo_movimiento','documento.tipo_movimiento_idTipo_movimiento','=','tipo_movimiento.idTipo_movimiento')
                     ->select('documento.*', 'tipo_documento.Descripcion','tipo_movimiento.DescripcionM','estado.DescripcionE')
                     ->where('documento.Estado_Venta_idEstado_Venta','=', $tipoE)
-                    ->where('documento.Tipo_Documento_idTipo_Documento','=', $tipoM)
+                    ->where('documento.Tipo_Movimiento_idTipo_Movimiento','=', $tipoM)
                     ->orderBy('idDocumento')
                     ->get();
             
@@ -146,7 +135,18 @@ class ListaDocumentosController extends Controller
                     ->orderBy('idDocumento')
                     ->get();
         }
-
+        if( $tipoM != 'Seleccione...' && $tipo == 'Seleccione...' && $tipoE == 'Seleccione...'){
+            $documentos = DB::table('documento')
+                    ->join('tipo_documento','documento.tipo_documento_idTipo_Documento','=','tipo_documento.idTipo_Documento')
+                    ->join('estado','documento.Estado_Venta_idEstado_Venta','=','idestado')
+                    ->join('tipo_movimiento','documento.tipo_movimiento_idTipo_movimiento','=','tipo_movimiento.idTipo_movimiento')
+                    ->select('documento.*', 'tipo_documento.Descripcion','tipo_movimiento.DescripcionM','estado.DescripcionE')
+                    ->where('documento.Tipo_Movimiento_idTipo_Movimiento','=', $tipoM)
+                    ->orderBy('idDocumento')
+                    ->get();
+            
+            
+        }
         
             
         

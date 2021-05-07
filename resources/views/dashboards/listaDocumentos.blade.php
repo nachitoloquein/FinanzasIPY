@@ -21,7 +21,7 @@
     <select name='movimiento' id='mov' value= "{{$tipoM}}" class="form-control" style="min-width:200px;">
     <option selected >Seleccione...</option>
     @foreach($tiposM as $tiposM)
-        <option value="{{ $tiposM->idTipo_Movimiento }}">{{ $tiposM->DescripcionM }}</option>
+        <option value="{{ $tiposM->idTipo_Movimiento}}">{{ $tiposM->DescripcionM }}</option>
     @endforeach
     </select>
     </div>
@@ -79,7 +79,7 @@
                             
                         }
                     ?>
-                    <a class="btn btn-primary {{$display}}" href="{{route('pago',$documento)}}"><i class="fa"></i>Crear pago</a>
+                    <a class="btn btn-primary {{$display}}" href="#"><i class="fa"></i>Crear pago</a>
                 </td>
                 </tr>
             @endforeach

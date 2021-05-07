@@ -40,11 +40,11 @@ Route::post('/agregarp',[ProductoController::class,'store'])->name('agregarp.lis
 Route::get('/modificarp/{id}',[ProductoController::class,'edit'])->name('edit');
 Route::patch('/modificarp/producto/{id}', [ProductoController::class,'update'])->name('update');
 Route::get('/historial',[HistorialController::class,'index'])->name('historial');
-Route::get('/lobby',PaginaPrincipalController::class);
+Route::post('/home',PaginaPrincipalController::class);
 Route::get('/agregarProveedor',[proveedorController::class,'index'])->name('agregarProveedor');
 Route::post('/agregarProveedor',[proveedorController::class,'store'])->name('agregarProveedor.lista');
 Route::get('/listaProveedores',[proveedorController::class,'obtenerDatos'])->name('listaProveedores');
-Route::get('/lobby',PaginaPrincipalController::class)->name('lobby');
+Route::get('/home',PaginaPrincipalController::class)->name('lobby');
 Route::get('/pago/{id}',[pagoController::class,'pago'])->name('pago');
 
 

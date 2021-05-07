@@ -47,12 +47,12 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
           <li class="nav-item">
-            <a href="404" class="nav-link text-white">
+            <a href="{{route('listaProveedores')}}" class="nav-link text-white">
               Proveedores
             </a>
           </li>
           <li>
-            <a href="{{route('historial')}}" class="nav-link text-white">
+            <a href="{{route('documentos')}}" class="nav-link text-white">
               Historial de Compras/Venta 
             </a>
           </li>
