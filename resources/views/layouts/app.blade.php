@@ -37,7 +37,7 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
           <li class="nav-item">
-            <a href="proveedores.html" class="nav-link text-white">
+            <a href="{{route('listaProveedores')}}" class="nav-link text-white">
               Proveedores
             </a>
           </li>

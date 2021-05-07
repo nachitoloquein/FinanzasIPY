@@ -10,5 +10,5 @@ class Documento extends Model
     use HasFactory;
     protected $table = 'Documento';
     public $timestamps = false;
-    protected $PrimaryKey = 'idDocumento';
+    protected $primaryKey = 'idDocumento';
 }

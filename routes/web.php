@@ -11,6 +11,7 @@ use App\Http\Controllers\lobyController;
 use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PaginaPrincipalController;
+use App\Http\Controllers\proveedorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,8 +29,8 @@ Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/listaProductos', ListaProductoController::class)->name('listaP');
-Route::get('listaDocumentos',ListaDocumentosController::class)->name('documentos');
-Route::get('listaDocumentos/{tipo}',[ListaDocumentosController::class,'__invoke']);
+Route::get('/listaDocumentos',ListaDocumentosController::class)->name('documentos');
+Route::get('/listaDocumentos/{tipo}',[ListaDocumentosController::class,'__invoke']);
 Route::get('/crearCredito',CrearCreditoController::class);
 Route::get('/crearDebito',crearDebitoController::class);
 Route::get('/agregarp',[ProductoController::class,'create'])->name('agregarp');
@@ -38,5 +39,7 @@ Route::get('/modificarp/{id}',[ProductoController::class,'edit'])->name('edit');
 Route::patch('/modificarp/producto/{id}', [ProductoController::class,'update'])->name('update');
 Route::get('/historial',[HistorialController::class,'index'])->name('historial');
 Route::get('/lobby',PaginaPrincipalController::class);
-
+Route::get('/agregarProveedor',[proveedorController::class,'index'])->name('agregarProveedor');
+Route::post('/agregarProveedor',[proveedorController::class,'store'])->name('agregarProveedor.lista');
+Route::get('/listaProveedores',[proveedorController::class,'obtenerDatos'])->name('listaProveedores');
 
