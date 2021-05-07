@@ -12,6 +12,8 @@ use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PaginaPrincipalController;
 use App\Http\Controllers\proveedorController;
+use App\Http\Controllers\pagoController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,4 +44,7 @@ Route::get('/lobby',PaginaPrincipalController::class);
 Route::get('/agregarProveedor',[proveedorController::class,'index'])->name('agregarProveedor');
 Route::post('/agregarProveedor',[proveedorController::class,'store'])->name('agregarProveedor.lista');
 Route::get('/listaProveedores',[proveedorController::class,'obtenerDatos'])->name('listaProveedores');
+Route::get('/lobby',PaginaPrincipalController::class)->name('lobby');
+Route::get('/pago/{id}',[pagoController::class,'pago'])->name('pago');
+
 
