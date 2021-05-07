@@ -42,14 +42,14 @@
             </a>
           </li>
           <li>
-            <a href="historialcompras.html" class="nav-link text-white">
-              Historial de compras 
+            <a href="{{route('historial')}}" class="nav-link text-white">
+              Historial de compras/ venta 
             </a>
           </li>
           <li>
-            <a href="registro_venta.html" class="nav-link text-white">
+            <a href="{{route('listaP')}}" class="nav-link text-white">
     
-              Registro historial de ventas
+              modificar precio
             </a>
           </li>
         </ul>

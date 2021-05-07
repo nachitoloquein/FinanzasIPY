@@ -26,7 +26,7 @@ Route::get('/', function () {return view('auth.login');});
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/listaProductos', ListaProductoController::class)->name('listaP');
 Route::get('listaDocumentos',ListaDocumentosController::class)->name('documentos');
 Route::get('listaDocumentos/{tipo}',[ListaDocumentosController::class,'__invoke']);
@@ -36,8 +36,7 @@ Route::get('/agregarp',[ProductoController::class,'create'])->name('agregarp');
 Route::post('/agregarp',[ProductoController::class,'store'])->name('agregarp.lista');
 Route::get('/modificarp/{id}',[ProductoController::class,'edit'])->name('edit');
 Route::patch('/modificarp/producto/{id}', [ProductoController::class,'update'])->name('update');
-Route::get('/loby', [lobyController::class, 'index'])->name('loby');
 Route::get('/historial',[HistorialController::class,'index'])->name('historial');
-Route::get('/',PaginaPrincipalController::class);
+Route::get('/lobby',PaginaPrincipalController::class);
 
 
