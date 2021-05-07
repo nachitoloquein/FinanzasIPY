@@ -26,13 +26,17 @@ class ListaDocumentosController extends Controller
 
         $tipo = trim($request->get('select'));
         $tipoE = trim($request->get('estado'));
+        $tipoM = trim($request->get('movimiento'));
         $tipos = DB::table('tipo_documento')
                     ->select('tipo_documento.*')
                     ->get();
         $tiposE= DB::table('estado')
                     ->select('estado.*')
                     ->get();
-        if($tipo != 'Seleccione...' && $tipoE != 'Seleccione...' && $tipo != null && $tipoE != null ){
+        $tiposM= DB::table('tipo_movimiento')
+                    ->select('tipo_movimiento.*')
+                    ->get();
+        if($tipo != 'Seleccione...' && $tipoM != 'Seleccione...' && $tipoE != 'Seleccione...' && $tipo != null && $tipoE != null && $tipoM != null){
             $documentos = DB::table('documento')
                     ->join('tipo_documento','documento.tipo_documento_idTipo_Documento','=','tipo_documento.idTipo_Documento')
                     ->join('estado','documento.Estado_Venta_idEstado_Venta','=','idestado')
@@ -40,12 +44,13 @@ class ListaDocumentosController extends Controller
                     ->select('documento.*', 'tipo_documento.Descripcion','tipo_movimiento.DescripcionM','estado.DescripcionE')
                     ->where('documento.tipo_documento_idTipo_Documento','=',$tipo)
                     ->where('documento.Estado_Venta_idEstado_Venta','=', $tipoE)
+                    ->where('documento.Tipo_Documento_idTipo_Documento','=', $tipoM)
                     ->orderBy('idDocumento')
                     ->get();
             
             
         }
-        else if($tipo == 'Seleccione...' && $tipoE == 'Seleccione...'){
+        else if($tipo == 'Seleccione...' && $tipo == 'Seleccione...' && $tipoE == 'Seleccione...'){
             $documentos = DB::table('documento')
                     ->join('tipo_documento','documento.tipo_documento_idTipo_Documento','=','tipo_documento.idTipo_Documento')
                     ->join('estado','documento.Estado_Venta_idEstado_Venta','=','idestado')
@@ -54,7 +59,7 @@ class ListaDocumentosController extends Controller
                     ->orderBy('idDocumento')
                     ->get();
         }
-        else if($tipo != '0' && $tipoE == 'Seleccione...'){
+        else if($tipo != '0' && $tipoE == 'Seleccione...' && $tipoM == 'Seleccione...'){
             $documentos = DB::table('documento')
                     ->join('tipo_documento','documento.tipo_documento_idTipo_Documento','=','tipo_documento.idTipo_Documento')
                     ->join('estado','documento.Estado_Venta_idEstado_Venta','=','idestado')
@@ -66,7 +71,7 @@ class ListaDocumentosController extends Controller
             
             
         }
-        else if($tipo == 'Seleccione...' &&$tipoE != '0'){
+        else if($tipo == 'Seleccione...' &&$tipoE != '0' && $tipoM == 'Seleccione...'){
             $documentos = DB::table('documento')
                     ->join('tipo_documento','documento.tipo_documento_idTipo_Documento','=','tipo_documento.idTipo_Documento')
                     ->join('estado','documento.Estado_Venta_idEstado_Venta','=','idestado')
@@ -78,6 +83,60 @@ class ListaDocumentosController extends Controller
             
             
         }
+
+        else if($tipo == 'Seleccione...' &&$tipoE == 'Seleccione...' && $tipoM != '0'){
+            $documentos = DB::table('documento')
+                    ->join('tipo_documento','documento.tipo_documento_idTipo_Documento','=','tipo_documento.idTipo_Documento')
+                    ->join('estado','documento.Estado_Venta_idEstado_Venta','=','idestado')
+                    ->join('tipo_movimiento','documento.tipo_movimiento_idTipo_movimiento','=','tipo_movimiento.idTipo_movimiento')
+                    ->select('documento.*', 'tipo_documento.Descripcion','tipo_movimiento.DescripcionM','estado.DescripcionE')
+                    ->where('documento.Tipo_Documento_idTipo_Documento','=', $tipoM)
+                    ->orderBy('idDocumento')
+                    ->get();
+            
+            
+        }
+        else if($tipo != '0' &&$tipoE == 'Seleccione...' && $tipoM != '0'){
+            $documentos = DB::table('documento')
+                    ->join('tipo_documento','documento.tipo_documento_idTipo_Documento','=','tipo_documento.idTipo_Documento')
+                    ->join('estado','documento.Estado_Venta_idEstado_Venta','=','idestado')
+                    ->join('tipo_movimiento','documento.tipo_movimiento_idTipo_movimiento','=','tipo_movimiento.idTipo_movimiento')
+                    ->select('documento.*', 'tipo_documento.Descripcion','tipo_movimiento.DescripcionM','estado.DescripcionE')
+                    ->where('documento.Tipo_Documento_idTipo_Documento','=', $tipoM)
+                    ->where('documento.tipo_documento_idTipo_Documento','=',$tipo)
+                    ->orderBy('idDocumento')
+                    ->get();
+            
+            
+        }
+        else if($tipo == 'Seleccione...' &&$tipoE != '0' && $tipoM != '0'){
+            $documentos = DB::table('documento')
+                    ->join('tipo_documento','documento.tipo_documento_idTipo_Documento','=','tipo_documento.idTipo_Documento')
+                    ->join('estado','documento.Estado_Venta_idEstado_Venta','=','idestado')
+                    ->join('tipo_movimiento','documento.tipo_movimiento_idTipo_movimiento','=','tipo_movimiento.idTipo_movimiento')
+                    ->select('documento.*', 'tipo_documento.Descripcion','tipo_movimiento.DescripcionM','estado.DescripcionE')
+                    ->where('documento.Estado_Venta_idEstado_Venta','=', $tipoE)
+                    ->where('documento.Tipo_Documento_idTipo_Documento','=', $tipoM)
+                    ->orderBy('idDocumento')
+                    ->get();
+            
+            
+        }
+        else if($tipo != '0' &&$tipoE != '0' && $tipoM == 'Seleccione...'){
+            $documentos = DB::table('documento')
+                    ->join('tipo_documento','documento.tipo_documento_idTipo_Documento','=','tipo_documento.idTipo_Documento')
+                    ->join('estado','documento.Estado_Venta_idEstado_Venta','=','idestado')
+                    ->join('tipo_movimiento','documento.tipo_movimiento_idTipo_movimiento','=','tipo_movimiento.idTipo_movimiento')
+                    ->select('documento.*', 'tipo_documento.Descripcion','tipo_movimiento.DescripcionM','estado.DescripcionE')
+                    ->where('documento.Estado_Venta_idEstado_Venta','=', $tipoE)
+                    ->where('documento.tipo_documento_idTipo_Documento','=',$tipo)
+                    ->orderBy('idDocumento')
+                    ->get();
+            
+            
+        }
+
+        
         else{
             $documentos = DB::table('documento')
                     ->join('tipo_documento','documento.tipo_documento_idTipo_Documento','=','tipo_documento.idTipo_Documento')
@@ -91,6 +150,6 @@ class ListaDocumentosController extends Controller
         
             
         
-    return view('/dashboards/listaDocumentos', compact('documentos','tipo', 'tipos', 'tiposE', 'tipoE'));
+    return view('/dashboards/listaDocumentos', compact('documentos','tipo', 'tipos', 'tiposE', 'tipoE', 'tiposM', 'tipoM'));
     }
 }

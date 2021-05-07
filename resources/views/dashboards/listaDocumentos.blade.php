@@ -24,6 +24,17 @@
     @endforeach
     </select>
     </div>
+
+    <div class = "d-flex">
+    <label style="min-width:200px;">Filtro por tipo de movimiento</label>
+    <select name='movimiento' id='mov' value= "{{$tipoM}}" class="form-control" style="min-width:200px;">
+    <option selected >Seleccione...</option>
+    @foreach($tiposM as $tiposM)
+        <option value="{{ $tiposM->idTipo_Movimiento }}">{{ $tiposM->DescripcionM }}</option>
+    @endforeach
+    </select>
+    </div>
+
     <input class="btn btn-primary " type="submit" value="Aplicar">
     </form>
     </div>
