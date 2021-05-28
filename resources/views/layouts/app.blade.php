@@ -36,6 +36,48 @@
     <div class="d-flex flex-column p-4 text-white bg-dark barra" style="width: 280px">
       <a class="navbar-brand " href="{{ url('/') }}">
             Finanzas
+            <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+              <head>
+                  <!-- CSRF Token -->
+                  <meta name="csrf-token" content="{{ csrf_token() }}">
+                  <!-- Scripts -->
+                  <script src="{{ asset('js/app.js') }}" defer></script>
+              
+              
+              </head>
+              <body>
+                  @guest
+                    @if (Route::has('login'))
+                      <div >
+                        <a  href="{{ route('login') }}">{{ __('Login') }}</a>
+                      </div>
+                    @endif
+              
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}">{{ __('Register') }}</a>
+              
+                    @endif
+                      @else
+                          <hr>
+                          <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Bienvenido :
+                            {{ Auth::user()->name }}
+                              </a>
+                              <div >
+                                <a  href="{{ route('logout') }}"
+                                  onclick="event.preventDefault();
+                                  document.getElementById('logout-form').submit();">
+                                  {{ __('Salir') }}
+                                  </a>
+              
+                                   <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                 @csrf
+                                    </form>
+                              </div>
+                        
+                    @endguest
+              
+              </body>
+              </html>
       </a>
     <hr>
         <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
