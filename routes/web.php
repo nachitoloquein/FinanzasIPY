@@ -44,7 +44,6 @@ Route::post('/home',PaginaPrincipalController::class);
 Route::get('/agregarProveedor',[proveedorController::class,'index'])->name('agregarProveedor');
 Route::post('/agregarProveedor',[proveedorController::class,'store'])->name('agregarProveedor.lista');
 Route::get('/listaProveedores',[proveedorController::class,'obtenerDatos'])->name('listaProveedores');
-Route::get('/home',PaginaPrincipalController::class)->name('lobby');
 Route::get('/pago/{id}',[pagoController::class,'pago'])->name('pago');
 
 
