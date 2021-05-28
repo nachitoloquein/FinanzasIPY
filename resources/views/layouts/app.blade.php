@@ -37,48 +37,6 @@
       <a class="navbar-brand " href="{{ url('/') }}">
             Finanzas
       </a>
-      <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-
-</head>
-<body>
-    @guest
-      @if (Route::has('login'))
-        <div >
-          <a  href="{{ route('login') }}">{{ __('Login') }}</a>
-        </div>
-      @endif
-
-      @if (Route::has('register'))
-          <a href="{{ route('register') }}">{{ __('Register') }}</a>
-
-      @endif
-        @else
-            <hr>
-            <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Bienvenido :
-              {{ Auth::user()->name }}
-                </a>
-                <div >
-                  <a  href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                    {{ __('Salir') }}
-                    </a>
-
-                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                   @csrf
-                      </form>
-                </div>
-          
-      @endguest
-
-</body>
-</html>
     <hr>
         <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
           <span class="navbar-toggler-icon"></span>
@@ -92,20 +50,17 @@
             <a href="{{route('listaProveedores')}}" class="nav-link text-white">
               Proveedores
             </a>
-            <hr>
           </li>
           <li>
             <a href="{{route('documentos')}}" class="nav-link text-white">
               Historial de Compras/Venta 
             </a>
-            <hr>
           </li>
           <li>
             <a href="{{route('listaP')}}" class="nav-link text-white">
     
               Modificar Precio
             </a>
-            <hr>
           </li>
           <li>
             <a href="404 " class="nav-link text-white">
@@ -114,6 +69,7 @@
             </a>
           </li>
         </ul>
+        <hr>
       </div>
     </div>
 </nav>
