@@ -89,6 +89,11 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
           <li class="nav-item">
+            <a href="{{route('home')}}" class="nav-link text-white">
+              Estadísticas
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{route('listaProveedores')}}" class="nav-link text-white">
               Proveedores
             </a>
@@ -104,11 +109,6 @@
               Modificar Precio
             </a>
           </li>
-          <li>
-            <a href="404 " class="nav-link text-white">
-    
-              Crear nota de Credito
-            </a>
           </li>
         </ul>
         <hr>
