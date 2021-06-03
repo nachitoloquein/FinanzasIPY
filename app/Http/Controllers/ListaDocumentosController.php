@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Documento;
+use App\Models\documento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\VentasExport;
+
 class ListaDocumentosController extends Controller
 {
     /*public function __invoke(){
@@ -151,5 +153,10 @@ class ListaDocumentosController extends Controller
             
         
     return view('/dashboards/listaDocumentos', compact('documentos','tipo', 'tipos', 'tiposE', 'tipoE', 'tiposM', 'tipoM'));
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new VentasExport , 'documentos.xlsx');
     }
 }

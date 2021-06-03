@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class total_ventas extends Model
 {
     use HasFactory;
-    protected $table = 'detalle_documento';
+    protected $table = 'documento';
     public $timestamps = false;
-    protected $primaryKey = 'Valor_Total_Bruto';
+    protected $primaryKey = 'idDocumento';
+}

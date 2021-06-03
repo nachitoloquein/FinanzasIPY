@@ -39,7 +39,9 @@
     
 
     <input class="btn btn-primary " type="submit" value="Aplicar">
+
     </form>
+    <a href="{{route('documentos.excel')}}">Exportar datos</a>
     </div>
   </div>
   
