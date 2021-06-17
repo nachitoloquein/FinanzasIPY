@@ -48,4 +48,3 @@ Route::get('/listaProveedores',[proveedorController::class,'obtenerDatos'])->nam
 Route::get('/pago/{id}',[pagoController::class,'pago'])->name('pago');
 Route::get('ventas-list-excel', [ListaDocumentosController::class, 'exportExcel'])->name('documentos.excel');
 
-

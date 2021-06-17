@@ -65,7 +65,7 @@
     </div>
     <div style="margin:10px;">
     <input class="btn btn-primary " type="submit" value="Crear nota de credito">
-    <button type="button" class = "btn btn-danger">Cancelar</button>
+    <a class="btn btn-danger" href="/listaDocumentos/"><i class="fa"></i>Cancelar</a>
     </div>
     </div>
   </form>

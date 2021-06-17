@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+   
     <body>
         <form action="{{route('agregarProveedor.lista')}}" method="POST">
             @csrf
@@ -52,6 +53,8 @@
             </div>
 
             <input class="btn btn-primary " type="submit" value="Agregar Proveedor">
+            
+            <a class="btn btn-danger" href="/listaProveedores/"><i class="fa"></i>Cancelar</a>
         </form>
         
     </body>
