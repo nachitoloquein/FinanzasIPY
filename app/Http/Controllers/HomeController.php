@@ -34,7 +34,12 @@ class HomeController extends Controller
         ->addSelect(DB::raw("sum(Cantidad) as Stock"))
         ->addSelect(DB::raw("sum(Valor_Total_Bruto) as Ventas"))
         ->get();
-        return view ('estadistica',compact('Cantidad'));
+
+        $Proveedor = DB::table('persona')
+        ->Select( DB::raw("count(Nombre) as Cantidad_Proveedor"))
+        ->get();
+
+        return view ('estadistica',compact('Cantidad','Proveedor'));
         
     }
 }

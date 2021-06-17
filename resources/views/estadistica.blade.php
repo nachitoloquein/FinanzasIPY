@@ -23,7 +23,7 @@
   <div class="row">
 
     <div class="vendido">
-      <div class="bg-success text-white text-center m-1">
+      <div class="bg-primary text-white text-center m-1">
         <div class="card-header">Total Ventas</div>
         <div class="card-body">
          <h5 class="card-title"><span id="idVendidos">
@@ -72,6 +72,35 @@
         </div>
       </div> 
     </div>
+
+  </div>
+
+
+</div>
+
+<div class="container">
+
+
+  <div class="row">
+
+    <div class="vendido">
+      <div class="bg-success  text-white text-center m-1">
+        <div class="card-header">Proveedores</div>
+        <div class="card-body">
+         <h5 class="card-title"><span id="idVendidos">
+         @foreach($Proveedor as $proveedor)
+        <tbody>
+        <tr>
+        <td>{{ $proveedor->Cantidad_Proveedor}}</td>
+        </tr>
+        </tbody>
+      @endforeach</span></h5>
+         <p class="card-text">Cantidad Proveedores</p>
+        </div>
+      </div>
+    </div>
+
+    
 
   </div>
 
