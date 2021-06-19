@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\VentasExport;
-use Transbank\Webpay\WebpayPlus\Transaction;
 
 class ListaDocumentosController extends Controller
 {
