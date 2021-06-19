@@ -5,22 +5,22 @@
 <div class = "card d-flex align-items-center" style="padding:10px;">
 <div class="input-group mb-3"style="width:50%">
   <span class="input-group-text" id="basic-addon1">Número de nota</span>
-  <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+  <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name=idD>
 </div>
 
 <div class="input-group mb-3" style="width:50%">
 <span class="input-group-text" id="basic-addon2">Número de documento</span>
-  <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2">
+  <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2" name=nDocumento>
 </div>
 
 <div class="input-group mb-3" style="width:50%">
-<span class="input-group-text" id="basic-addon2">Tipo de documento</span>
-  <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2">
+<span class="input-group-text" id="basic-addon2">precio </span>
+  <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2" name=precio>
 </div>
 
 <div class="input-group mb-3"style="width:50%">
   <span class="input-group-text" id="basic-addon3">Fecha de emisión</span>
-  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" name=fecEmision>
 </div>
 
 <div class="input-group mb-3"style="width:50%">
@@ -55,13 +55,13 @@
   </table>
 </div>
 <div class="input-group mb-3"style="width:50%">
-  <span class="input-group-text">Total crédito</span>
-  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+  <span class="input-group-text">Total Debito</span>
+  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"name=vTotal>
 
 </div>
 <div style="margin:10px;">
-<button type="button" class = "btn btn-success">Crear nota de débito</button>
-<button type="button" class = "btn btn-danger">Cancelar</button>
+<input class="btn btn-primary " type="submit" value="Crear nota de debito">
+<a class="btn btn-danger" href="/listaDocumentos/"><i class="fa"></i>Cancelar</a>
 </div>
 </div>
 
