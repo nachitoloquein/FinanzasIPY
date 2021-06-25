@@ -25,9 +25,8 @@ class jsonController extends Controller
                 "listaProductos"=>$productos
             )
             ,200);*/
-            $productos = array();
-            $data['productos'][];
-            json_encode($data);
+               echo json_encode($productos);
+            
     }
 
     /**
