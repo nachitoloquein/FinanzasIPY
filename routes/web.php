@@ -14,7 +14,8 @@ use App\Http\Controllers\PaginaPrincipalController;
 use App\Http\Controllers\proveedorController;
 use App\Http\Controllers\pagoController;
 use App\Http\Controllers\PaymentController;
-
+use App\Http\Controllers\SoapController;
+use App\Http\Controllers\jsonController;
 
 Route::get('/', function () {return view('auth.login');});
 
@@ -38,7 +39,8 @@ Route::post('/agregarProveedor',[proveedorController::class,'store'])->name('agr
 Route::get('/listaProveedores',[proveedorController::class,'obtenerDatos'])->name('listaProveedores');
 Route::get('/pago/{id}',[pagoController::class,'pago'])->name('pago');
 Route::get('ventas-list-excel', [ListaDocumentosController::class, 'exportExcel'])->name('documentos.excel');
-
+Route::get('soap',[SoapController::class, 'index'])->name('soap');
+Route::get('json',[jsonController::class,'index'])->name('json');
 //ruta de pago
 Route::get('/paypal/pay', [PaymentController::class, 'payWithPayPal'])->name('pagoPayPal');
 Route::get('/paypal/status', [PaymentController::class, 'payPalStatus'])->name('payPalStatus');
