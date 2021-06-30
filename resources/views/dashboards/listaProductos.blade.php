@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="card" style="background-color:#eee">
+<div class = "card-body">
 <table class="table table-responsive" class="card" style="text-align:center;" >
   <thead>
     <tr>
@@ -33,4 +35,6 @@
   </tbody>
       @endforeach
 </table>
+</div>
+</div>
 @endsection

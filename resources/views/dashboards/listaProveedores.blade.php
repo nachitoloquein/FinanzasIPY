@@ -2,6 +2,8 @@
 
 @section('content')
 <a style="margin:10px;" class="btn btn-success" href="{{route('agregarProveedor')}}"><i class="fa"></i>Agregar proveedor</a>
+<div class = "card" style="background-color:#eee">
+<div class = "card-body">
 <table class="table">
     <thead>
       <tr>
@@ -23,4 +25,6 @@
       
     </tbody>
   </table>
+  </div>
+  </div>
 @endsection

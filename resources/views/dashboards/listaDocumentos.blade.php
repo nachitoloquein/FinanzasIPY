@@ -44,7 +44,8 @@
     <a href="{{route('documentos.excel')}}">Exportar datos</a>
     </div>
   </div>
-  
+<div class="card" style="background-color:#eee">
+<div class="card-body">
 <table class="table table-responsive">
     <thead>
         <tr>
@@ -88,4 +89,6 @@
         
     </tbody>
 </table>
+</div>
+</div>
 @endsection
