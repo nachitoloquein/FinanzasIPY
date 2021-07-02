@@ -37,12 +37,12 @@ class SoapController extends Controller
 
         //Se hace un ciclo para insertar los datos a la base de datos
         foreach($output['Producto'] as $row){
-            $id = $row['id_producto'];
+            #$id = $row['id_producto'];
             $nombre = $row['nombre'];
             $tipo = 1;
 
         $producto = new Producto();
-        $producto->idProducto=$id;
+        #$producto->idProducto=$id;
         $producto->Nombre_producto=$nombre;
         $producto->Tipo_Producto_idTipo_Producto=$tipo;
         $producto->save();

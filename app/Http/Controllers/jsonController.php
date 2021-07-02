@@ -19,6 +19,7 @@ class jsonController extends Controller
         $productos = DB::table('producto')
                     ->select('idProducto','Nombre_producto','Precio')
                     ->orderBy('idProducto')
+                    ->where('Precio','>','0')
                     ->get();
         /*return Response::json(
             array(
