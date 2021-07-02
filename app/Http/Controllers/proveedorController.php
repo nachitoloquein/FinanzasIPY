@@ -56,7 +56,7 @@ class proveedorController extends Controller
         $proveedor->Comuna_idComuna=1;
         $proveedor->Generos_idGenero=1;
         $proveedor->save();
-        return redirect()->route('listaProveedores');
+        return redirect()->route('listaProveedor');
 
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use SoapClient;
+use App\Models\Producto;
 
 
 class SoapController extends Controller
@@ -15,26 +16,43 @@ class SoapController extends Controller
      */
     public function index()
     {
-        $soap_client = new SoapClient('http://localhost:5000/api/web-service/?WSDL');
+        //Se llama al webService
+        #$soap_client = new SoapClient('http://100.26.199.243:8000/api/?WSDL');
+        $soap_client = new SoapClient('http://127.0.0.1:5000/api/web-service/?WSDL');
+        //Se imprimen las funciones
         print_r(
             $soap_client->__getFunctions()
         );
-        $respuesta = $soap_client->__soapCall("saludar", array());
-        $json = file_get_contents($respuesta);
-        $data = json_decode($json, true);
-        foreach($data as $row){
-            $id = $row['id'];
+
+        $respuesta = $soap_client->__soapCall("listaProductos", array());
+        $xml = $respuesta->listaProductosResult;
+        #print_r($xml);
+        //Se procesa el xml
+        #$xml = simplexml_load_string($xml);
+        $objJson = json_encode($xml);
+        print_r($objJson);
+        echo "<br>";
+        $output = json_decode($objJson, true);
+        print_r($output['Producto']);
+
+        //Se hace un ciclo para insertar los datos a la base de datos
+        foreach($output['Producto'] as $row){
+            $id = $row['id_producto'];
             $nombre = $row['nombre'];
             $tipo = 1;
 
-           $sql = "INSERT INTO producto ('idProducto','Nombre_producto','Tipo_Producto_idTipo_Producto') VALUES ('$id','$nombre',''$tipo);";
-
-           $mysql_query($sql);
+        $producto = new Producto();
+        $producto->idProducto=$id;
+        $producto->Nombre_producto=$nombre;
+        $producto->Tipo_Producto_idTipo_Producto=$tipo;
+        $producto->save();
         }
+        return redirect()->route('listaP');
         #phpinfo();
         return view('dashboards.soap');
+        
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -100,5 +118,15 @@ class SoapController extends Controller
     {
         //
     }
+    /*$data = json_decode($respuesta, true);
+        foreach($data as $row){
+            $id = $row['id'];
+            $nombre = $row['nombre'];
+            $tipo = 1;
+<
+           $sql = "INSERT INTO producto ('idProducto','Nombre_producto','Tipo_Producto_idTipo_Producto') VALUES ('$id','$nombre',''$tipo);";
+
+           $mysql_query($sql);
+        }*/
 
 }
