@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\EstadisticaExport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\detalle_documento;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 
@@ -42,4 +44,11 @@ class HomeController extends Controller
         return view ('estadistica',compact('Cantidad','Proveedor'));
         
     }
+
+    public function exportEstadistica(){
+
+        return Excel::download(new EstadisticaExport, 'estadistica.xlsx');
+    }
+
+
 }

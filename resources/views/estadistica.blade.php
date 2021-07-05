@@ -19,6 +19,7 @@
     
 <div class="container">
 
+<a type="button" href="{{route('estadistica.exel')}}">Reporte estadistica</a>
 
   <div class="row">
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Documento;
 use App\Models\tipo_movimiento;
 use Illuminate\Http\Request;
@@ -27,6 +28,8 @@ class HistorialController extends Controller
             return view('historial.vista',compact('datas','movimiento','mov'));
         }
     }
+
+    
 
     /**
      * Show the form for creating a new resource.

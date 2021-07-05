@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+
 use App\Models\documento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,6 +25,9 @@ class ListaDocumentosController extends Controller
                     ->get();
     return view('/dashboards/listaDocumentos',compact('documentos','tipos'));
     }*/
+    
+
+
 
     public function __invoke(Request $request){
 
@@ -159,4 +164,7 @@ class ListaDocumentosController extends Controller
     {
         return Excel::download(new VentasExport , 'documentos.xlsx');
     }
+
+   
 }
+
