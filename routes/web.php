@@ -42,6 +42,7 @@ Route::get('ventas-list-excel', [ListaDocumentosController::class, 'exportExcel'
 Route::get('soap',[SoapController::class, 'index'])->name('soap');
 Route::get('json',[jsonController::class,'index'])->name('json');
 Route::get('estadistica-excel', [HomeController::class, 'exportEstadistica'])->name('estadistica.exel');
+Route::get('/eliminarp/{id}',[ProductoController::class,'destroy'])->name('delete');
 
 //ruta de pago
 Route::get('/paypal/pay', [PaymentController::class, 'payWithPayPal'])->name('pagoPayPal');

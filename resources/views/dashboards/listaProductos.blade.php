@@ -31,6 +31,9 @@
       <td>
         <button class="btn btn-success" onclick="location.href = '{{ route('edit',$producto->idProducto) }}'"><i class="fa"></i>Modificar precio</button>
       </td>
+      <td>
+        <button class="btn btn-danger" onclick="location.href = '{{ route('delete',$producto->idProducto) }}'"><i class="fa"></i>Eliminar producto</button>
+      </td>
     </tr>
   </tbody>
       @endforeach

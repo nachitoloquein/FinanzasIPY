@@ -107,8 +107,13 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id){
+        $producto = Producto::find($id);
+        $producto->delete();
+
+        if ($producto == null){
+            return view('error');
+        }
+        return redirect()->route('listaP');
     }
 }

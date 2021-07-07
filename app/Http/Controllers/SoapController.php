@@ -17,8 +17,8 @@ class SoapController extends Controller
     public function index()
     {
         //Se llama al webService
-        #$soap_client = new SoapClient('http://100.26.199.243:8000/api/?WSDL');
-        $soap_client = new SoapClient('http://127.0.0.1:5000/api/web-service/?WSDL');
+        $soap_client = new SoapClient('http://100.26.199.243:8000/api/?WSDL');
+        #$soap_client = new SoapClient('http://127.0.0.1:5000/api/web-service/?WSDL');
         //Se imprimen las funciones
         print_r(
             $soap_client->__getFunctions()
@@ -33,21 +33,41 @@ class SoapController extends Controller
         print_r($objJson);
         echo "<br>";
         $output = json_decode($objJson, true);
-        print_r($output['Producto']);
-
+        #print_r($output['Producto']);
+        $elementos = count($output, COUNT_RECURSIVE);
+        print_r($elementos);
         //Se hace un ciclo para insertar los datos a la base de datos
-        foreach($output['Producto'] as $row){
-            #$id = $row['id_producto'];
-            $nombre = $row['nombre'];
-            $tipo = 1;
-
-        $producto = new Producto();
-        #$producto->idProducto=$id;
-        $producto->Nombre_producto=$nombre;
-        $producto->Tipo_Producto_idTipo_Producto=$tipo;
-        $producto->save();
+        if ($elementos == 3) {
+            foreach($output as $row){
+                #$id = $row['id_producto'];
+                $nombre = $row['nombre'];
+                $tipo = 1;
+    
+            $producto = new Producto();
+            #$producto->idProducto=$id;
+            $producto->Nombre_producto=$nombre;
+            $producto->Tipo_Producto_idTipo_Producto=$tipo;
+            $producto->save();
+            }
+            return redirect()->route('listaP');
         }
-        return redirect()->route('listaP');
+        elseif ($elementos > 3) {
+            foreach($output['Producto'] as $row){
+                #$id = $row['id_producto'];
+                $nombre = $row['nombre'];
+                $tipo = 1;
+    
+            $producto = new Producto();
+            #$producto->idProducto=$id;
+            $producto->Nombre_producto=$nombre;
+            $producto->Tipo_Producto_idTipo_Producto=$tipo;
+            $producto->save();
+            }
+            return redirect()->route('listaP');
+        }
+        elseif ($elementos == 0) {
+            return redirect()->route('listaP');
+        }
         #phpinfo();
         return view('dashboards.soap');
         
