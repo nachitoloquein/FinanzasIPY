@@ -27,10 +27,10 @@ class EstadisticaExport implements FromCollection, WithHeadings
         $Cantidad = DB::table('detalle_documento') 
         ->Select( DB::raw('count(idDetalle_documento)'))
         ->addSelect( DB::raw('sum(Cantidad)'))
-        ->addSelect( DB::raw('sum(Valor_Total_Bruto)'))
+        ->addSelect( DB::raw('sum(detalle_documento.Valor_Total_Bruto)'))
         ->addSelect( DB::raw('count(Nombre)'))
 
-        ->join('documento','detalle_documento.Documentos_idDocumentos','=','documento.idDocumento')
+        ->join('documento','detalle_documento.Documento_idDocumento','=','documento.idDocumento')
         ->join('usuario','documento.Usuario_idUsuario','=','usuario.idUsuario')
         ->join('persona','usuario.Persona_idPersona','=','persona.idPersona')     
         ->get();

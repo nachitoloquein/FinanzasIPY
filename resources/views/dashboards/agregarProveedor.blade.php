@@ -48,13 +48,13 @@
 
 
             <div class="form-group">
-                <label for="Correo">Dirección</label>
+                <label for="Direccion">Dirección</label>
                 <input type="text" class="form-control" id="Direccion" placeholder="Dirección" name="DireccionProveedor">
             </div>
 
             <input class="btn btn-primary " type="submit" value="Agregar Proveedor">
             
-            <a class="btn btn-danger" href="/listaProveedores/"><i class="fa"></i>Cancelar</a>
+            <a class="btn btn-danger" href="{{route('listaProveedores')}}"><i class="fa"></i>Cancelar</a>
         </form>
         
     </body>
