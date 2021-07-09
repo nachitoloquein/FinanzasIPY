@@ -6,7 +6,7 @@
 <div class="form-row d-flex">
 <form class="form-group col-md-4" action="{{route('documentos')}}" method="GET">
     <div class="form-group col-md-4">
-    <!--<div class = "d-flex">
+    <div class = "d-flex">
     <label style="min-width:200px;">Filtro por tipo de documento</label>
     <select name='select' id='select' value= "{{$tipo}}" class="form-control" style="min-width:200px;">
     <option selected >Seleccione...</option>
@@ -14,7 +14,7 @@
         <option value="{{ $tipos->idTipo_Documento }}">{{ $tipos->Descripcion }}</option>
     @endforeach
     </select>
-    </div> -->
+    </div> 
 
     <div class = "d-flex">
     <label style="min-width:200px;">Filtro por tipo de movimiento</label>
@@ -35,6 +35,8 @@
     @endforeach
     </select>
     </div>
+
+    
 
     
 
