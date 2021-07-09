@@ -16,6 +16,7 @@ use App\Http\Controllers\pagoController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SoapController;
 use App\Http\Controllers\jsonController;
+use App\Http\Controllers\DocumentoController;
 
 Route::get('/', function () {return view('auth.login');});
 
@@ -43,6 +44,8 @@ Route::get('soap',[SoapController::class, 'index'])->name('soap');
 Route::get('json',[jsonController::class,'index'])->name('json');
 Route::get('estadistica-excel', [HomeController::class, 'exportEstadistica'])->name('estadistica.exel');
 Route::get('/eliminarp/{id}',[ProductoController::class,'destroy'])->name('delete');
+Route::post('/agregarDocumento',[DocumentoController::class,'store'])->name('agregarD');
+Route::get('/agregarDocumento',[DocumentoController::class,'index'])->name('indexDoc');
 
 //ruta de pago
 Route::get('/paypal/pay', [PaymentController::class, 'payWithPayPal'])->name('pagoPayPal');
