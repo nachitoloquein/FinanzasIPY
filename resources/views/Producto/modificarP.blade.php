@@ -7,7 +7,7 @@
  
           <div class="form-group">
             <label for="formGroupExampleInput2">Precio</label>
-            <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Precio" name="Precio" value="{{$producto->Precio}}">
+            <input type="number" min = "1" class="form-control" id="formGroupExampleInput2" placeholder="Precio" name="Precio" value="{{$producto->Precio}}">
           </div>         
           <input class="btn btn-primary " type="submit" value="Modificar Precio">
           <a class="btn btn-danger" href="/listaProductos/"><i class="fa"></i>Cancelar</a>

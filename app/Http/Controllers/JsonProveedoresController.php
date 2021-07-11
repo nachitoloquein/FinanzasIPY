@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Persona;
+use Response;
 use Illuminate\Support\Facades\DB;
 
-class proveedorController extends Controller
+class JsonProveedoresController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,17 +15,13 @@ class proveedorController extends Controller
      */
     public function index()
     {
-        $region = DB::table('region')
-                ->select('region.*')
-                ->get();
-        $provincia = DB::table('provincia')
-                ->select('provincia.*')
-                ->get();
-        $comuna = DB::table('comuna')
-                ->select('comuna.*')
-                ->get();
+        $jsonProv = DB::table('persona')
+                    ->select('idPersona','Nombre','Apellido','Run','Razon_Social','Correo_Electronico')
+                    ->orderBy('idPersona')
+                    ->where('Tipo_persona_idTipo_persona','=',3)
+                    ->get();
 
-        return view('dashboards.agregarProveedor',compact('region','provincia','comuna'));
+        echo json_encode($jsonProv);
     }
 
     /**
@@ -35,7 +31,7 @@ class proveedorController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -46,18 +42,7 @@ class proveedorController extends Controller
      */
     public function store(Request $request)
     {
-        $proveedor = new Persona();
-        $proveedor->Tipo_persona_idTipo_persona=3;
-        $proveedor->Nombre=$request->Nombre;
-        $proveedor->Razon_Social=$request->razonSocialProveedor;
-        $proveedor->Run=$request->RutProveedor;
-        $proveedor->Correo_electronico=$request->CorreoProveedor;
-        $proveedor->Direccion=$request->DireccionProveedor;
-        $proveedor->Comuna_idComuna=1;
-        $proveedor->Generos_idGenero=1;
-        $proveedor->save();
-        return redirect()->route('listaProveedores');
-
+        //
     }
 
     /**
@@ -103,13 +88,5 @@ class proveedorController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function obtenerDatos(){
-        $proveedores = DB::table('persona')
-                        ->select('persona.*')
-                        ->where('Tipo_persona_idTipo_persona','=',3)
-                        ->get();
-        return view('dashboards.listaProveedores',compact('proveedores'));
     }
 }

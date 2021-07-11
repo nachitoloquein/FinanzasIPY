@@ -39,29 +39,50 @@ class SoapController extends Controller
         //Se hace un ciclo para insertar los datos a la base de datos
         if ($elementos == 3) {
             foreach($output as $row){
-                #$id = $row['id_producto'];
+                $id = $row['id_producto'];
                 $nombre = $row['nombre'];
                 $tipo = 1;
+            
+            $buscar = Producto::find($id);
+            if ($buscar == null){
     
             $producto = new Producto();
-            #$producto->idProducto=$id;
+            $producto->idProducto=$id;
             $producto->Nombre_producto=$nombre;
             $producto->Tipo_Producto_idTipo_Producto=$tipo;
             $producto->save();
             }
-            return redirect()->route('listaP');
+            else {
+                $producto = Producto::find($id);
+                $producto->Nombre_producto=$nombre;
+                $producto->Tipo_Producto_idTipo_Producto=1;
+                $producto->save();
+            }
         }
+            return redirect()->route('listaP');
+        
+    }
         elseif ($elementos > 3) {
             foreach($output['Producto'] as $row){
-                #$id = $row['id_producto'];
+                $id = $row['id_producto'];
                 $nombre = $row['nombre'];
                 $tipo = 1;
-    
+
+            $buscar = Producto::find($id);
+            if ($buscar == null){
+        
             $producto = new Producto();
-            #$producto->idProducto=$id;
+            $producto->idProducto=$id;
             $producto->Nombre_producto=$nombre;
             $producto->Tipo_Producto_idTipo_Producto=$tipo;
             $producto->save();
+            }
+            else {
+                $producto = Producto::find($id);
+                $producto->Nombre_producto=$nombre;
+                $producto->Tipo_Producto_idTipo_Producto=1;
+                $producto->save();
+            }
             }
             return redirect()->route('listaP');
         }

@@ -21,32 +21,6 @@
                 <label for="Correo">Correo de contacto</label>
                 <input type="text" class="form-control" id="Correo" placeholder="Correo de contacto" name="CorreoProveedor">
             </div>
-            {{--<div class = "d-flex">
-            <label style="min-width:200px;">Región</label>
-            <select name='region' id='region' value= "{{$region}}" class="form-control" style="min-width:200px;">
-            <option selected >Seleccione...</option>
-            @foreach($region as $regions)
-                <option value="{{ $regions->idRegion }}">{{ $regions->DescripcionR }}</option>
-            @endforeach
-            </div>
-            <div class = "d-flex">
-            <label style="min-width:200px;">Provincia</label>
-            <select name='provincia' id='provincia' value= "{{$provincia}}" style="min-width:200px;" class = "form-control">
-                <option selected >Seleccione...</option>
-            @foreach($provincia as $provincias)
-                <option value="{{ $provincias->idProvincia }}">{{ $provincias->DescripcionP }}</option>
-            @endforeach
-            </div>
-            <div class = "d-flex">
-                <label style="min-width:200px;">Comuna</label>
-                <select name='comuna' id='comuna' value= "{{$comuna}}" class="form-control" style="min-width:200px;">
-                <option selected >Seleccione...</option>
-                @foreach($comuna as $comunas)
-                    <option value="{{ $comunas->idComuna }}">{{ $comunas->DescripcionC }}</option>
-                @endforeach
-            </div>--}}
-
-
             <div class="form-group">
                 <label for="Direccion">Dirección</label>
                 <input type="text" class="form-control" id="Direccion" placeholder="Dirección" name="DireccionProveedor">
