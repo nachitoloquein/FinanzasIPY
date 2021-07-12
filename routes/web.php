@@ -29,6 +29,10 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/listaProductos', ListaProductoController::class)->name('listaP');
 Route::get('/listaDocumentos',ListaDocumentosController::class)->name('documentos');
 Route::get('/listaDocumentos/{tipo}',[ListaDocumentosController::class,'__invoke']);
+
+
+Route::get('/listaDocumentos/{token_ws}',[webpaycontroller::class,'confirmar_t']);
+
 Route::get('/crearCredito',[CrearCreditoController::class,'index'])->name('CrearCredito');
 Route::post('/crearCredito',[CrearCreditoController::class,'store'])->name('notaC');
 Route::get('/crearDebito',crearDebitoController::class);
@@ -55,6 +59,7 @@ Route::get('/jsonProveedores',[JsonProveedoresController::class,'index'])->name(
 Route::get('/paypal/pay', [PaymentController::class, 'payWithPayPal'])->name('pagoPayPal');
 Route::get('/paypal/status', [PaymentController::class, 'payPalStatus'])->name('payPalStatus');
 
-Route::get('/webpay',[webpaycontroller::class, 'index'])->name('webpay');
+Route::get('/webpay/{id}',[webpaycontroller::class, 'index'])->name('Webpay');
+
 Route::get('/transaccion',[TransaccionController::class, 'index'])->name('transaccion');
 

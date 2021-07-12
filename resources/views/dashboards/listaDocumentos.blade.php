@@ -78,13 +78,16 @@
                     <a class="btn btn-success" href="/crearDebito/"><i class="fa"></i>Crear nota de débito</a>
                     
                     <?php
+                        $id = $documento->idDocumento;
+                        $doc = $documento->Numero_Documento;
+                        $valor = $documento->Valor_Total;
                         $display = "d-none";
                         if( $documento->Estado_Venta_idEstado_Venta == 4 ){
                             $display = "d-inline-block";
                             
                         }
                     ?>
-                    <a class="btn btn-primary {{$display}}" href="{{route ('webpay')}}"><i class="fa"></i>Crear pago</a>
+                    <a class="btn btn-primary {{$display}}" href="{{route ('Webpay', $id)}}"><i class="fa"></i>Pagar</a>
                 </td>
                 </tr>
             @endforeach
