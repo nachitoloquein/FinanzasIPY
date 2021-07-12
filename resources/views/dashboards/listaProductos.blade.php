@@ -1,9 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="card" style="background-color:#eee">
+<div>
+  <a href="{{route('soap')}}" class = "btn btn-primary">Actualizar lista</a>
+</div>
+<div class="card" style="background-color:#eee; min-width: 900px; max-width:900px;">
 <div class = "card-body">
-<table class="table table-responsive" class="card" style="text-align:center;" >
+<table class="table table-responsive" class="card" style="text-align:center; max-height: 600px" >
   <thead>
     <tr>
       <th scope="col">ID</th>
@@ -18,7 +21,7 @@
     </tr>
   </thead>
     @foreach($productos as $producto)
-    <tbody>
+    <tbody class = "overflow-y: auto;">
       <tr>
       <td>{{ $producto->idProducto }}</td>
       <td>{{ $producto->Nombre_producto }}</td>
@@ -29,10 +32,8 @@
       <td>{{ $producto->Descripcion }}</td>
       <td>{{ $producto->Stock }}</td>
       <td>
-        <button class="btn btn-success" onclick="location.href = '{{ route('edit',$producto->idProducto) }}'"><i class="fa"></i>Modificar precio</button>
-      </td>
-      <td>
-        <button class="btn btn-danger" onclick="location.href = '{{ route('delete',$producto->idProducto) }}'"><i class="fa"></i>Eliminar producto</button>
+        <button class="btn btn-success" style="min-width: 200px; max-width:200px" onclick="location.href = '{{ route('edit',$producto->idProducto) }}'"><i class="fa"></i>Modificar precio</button>
+        <button class="btn btn-danger" style="min-width: 200px; max-width:200px" onclick="location.href = '{{ route('delete',$producto->idProducto) }}'"><i class="fa"></i>Eliminar producto</button>
       </td>
     </tr>
   </tbody>

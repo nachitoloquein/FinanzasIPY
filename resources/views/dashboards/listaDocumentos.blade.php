@@ -82,7 +82,7 @@
                         $doc = $documento->Numero_Documento;
                         $valor = $documento->Valor_Total;
                         $display = "d-none";
-                        if( $documento->Estado_Venta_idEstado_Venta == 4 ){
+                        if( $documento->Estado_Venta_idEstado_Venta == 3 ){
                             $display = "d-inline-block";
                             
                         }

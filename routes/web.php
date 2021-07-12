@@ -54,6 +54,10 @@ Route::get('/eliminarp/{id}',[ProductoController::class,'destroy'])->name('delet
 Route::post('/agregarDocumento',[DocumentoController::class,'store'])->name('agregarD');
 Route::get('/agregarDocumento',[DocumentoController::class,'index'])->name('indexDoc');
 Route::get('/jsonProveedores',[JsonProveedoresController::class,'index'])->name('jsonProveedores');
+Route::get('/modificarProv/{id}',[proveedorController::class,'edit'])->name('editproveedor');
+Route::get('/eliminarProv/{id}',[proveedorController::class,'destroy'])->name('deleteproveedor');
+Route::patch('/modificarProv/proveedor/{id}', [proveedorController::class,'update'])->name('updateproveedor');
+
 
 //ruta de pago
 Route::get('/paypal/pay', [PaymentController::class, 'payWithPayPal'])->name('pagoPayPal');

@@ -79,7 +79,17 @@ class proveedorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $proveedor = Persona::find($id);
+        if ($proveedor == null){
+            $proveedor = DB::table('persona')
+            ->select('persona.*')
+            ->orderBy('idPersona')
+            ->where('Tipo_persona_idTipo_persona','=',3)
+            ->get();
+            echo "<script>alert('Proveedor no encontrado');</script>";
+            return view('dashboards.listaProveedores',compact('proveedor'));
+        }
+            return view('dashboards.modificarProv',compact('proveedor'));
     }
 
     /**
@@ -91,7 +101,18 @@ class proveedorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $proveedor = Persona::find($id);
+        $proveedor->Nombre=$request->Nombre;
+        $proveedor->Razon_Social=$request->razonSocialProveedor;
+        $proveedor->Run=$request->RutProveedor;
+        $proveedor->Correo_electronico=$request->CorreoProveedor;
+        $proveedor->Direccion=$request->DireccionProveedor;
+        $proveedor->save();
+
+        if($proveedor == null){
+            return view("error");
+        }
+        return redirect()->route('listaProveedores');
     }
 
     /**
@@ -102,7 +123,13 @@ class proveedorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $proveedor = Persona::find($id);
+        $proveedor->delete();
+
+        if($proveedor == null){
+            return view("error");
+        }    
+        return redirect()->route("listaProveedores");
     }
 
     public function obtenerDatos(){
