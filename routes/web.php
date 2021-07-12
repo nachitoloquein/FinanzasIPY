@@ -17,12 +17,9 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SoapController;
 use App\Http\Controllers\jsonController;
 use App\Http\Controllers\DocumentoController;
-<<<<<<< Updated upstream
 use App\Http\Controllers\JsonProveedoresController;
-=======
 use App\Http\Controllers\webpaycontroller;
 use App\Http\Controllers\TransaccionController;
->>>>>>> Stashed changes
 
 Route::get('/', function () {return view('auth.login');});
 
