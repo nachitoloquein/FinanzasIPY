@@ -20,7 +20,7 @@ class webpaycontroller extends Controller
         $documentos = Documento::find($id);
         $doc = $documentos->Numero_Documento;
         $valor = $documentos->Valor_Total;
-        $response = $transaction->create($id,$doc, $valor, 'http://127.0.0.1:8000/listaDocumentos');
+        $response = $transaction->create($id,$doc, $valor, 'http://127.0.0.1:8000/confirmacion');
         
         $url = $response->getUrl();
         $token = $response->getToken();
@@ -41,11 +41,17 @@ class webpaycontroller extends Controller
         $response = (new Transaction)->commit($token); // ó cualquiera de los métodos detallados en el ejemplo anterior del método create.
         if ($response->isApproved()) {
         // Transacción Aprobada
+            
+            $id = $response->getBuyOrder();
+            $documentos = Documento::find($id);
             $documentos->Estado_Venta_idEstado_Venta = 1;
+            $documentos->save();
+            return redirect(route('documentos'));
         } else {
         // Transacción rechazada
-            $documentos->Estado_Venta_idEstado_Venta = 3;
+        
         }
-        return view('/dashboards/listaDocumentos');
+        //return view('/dashboards/listaDocumentos');
+        
     }
 }

@@ -31,7 +31,7 @@ Route::get('/listaDocumentos',ListaDocumentosController::class)->name('documento
 Route::get('/listaDocumentos/{tipo}',[ListaDocumentosController::class,'__invoke']);
 
 
-Route::get('/listaDocumentos/{token_ws}',[webpaycontroller::class,'confirmar_t']);
+Route::get('/confirmacion',[webpaycontroller::class,'confirmar_t'])->name('confirmacion');
 
 Route::get('/crearCredito',[CrearCreditoController::class,'index'])->name('CrearCredito');
 Route::post('/crearCredito',[CrearCreditoController::class,'store'])->name('notaC');
