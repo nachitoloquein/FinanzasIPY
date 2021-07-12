@@ -17,7 +17,12 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SoapController;
 use App\Http\Controllers\jsonController;
 use App\Http\Controllers\DocumentoController;
+<<<<<<< Updated upstream
 use App\Http\Controllers\JsonProveedoresController;
+=======
+use App\Http\Controllers\webpaycontroller;
+use App\Http\Controllers\TransaccionController;
+>>>>>>> Stashed changes
 
 Route::get('/', function () {return view('auth.login');});
 
@@ -52,4 +57,7 @@ Route::get('/jsonProveedores',[JsonProveedoresController::class,'index'])->name(
 //ruta de pago
 Route::get('/paypal/pay', [PaymentController::class, 'payWithPayPal'])->name('pagoPayPal');
 Route::get('/paypal/status', [PaymentController::class, 'payPalStatus'])->name('payPalStatus');
+
+Route::get('/webpay',[webpaycontroller::class, 'index'])->name('webpay');
+Route::get('/transaccion',[TransaccionController::class, 'index'])->name('transaccion');
 

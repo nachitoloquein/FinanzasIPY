@@ -84,7 +84,7 @@
                             
                         }
                     ?>
-                    <a class="btn btn-primary {{$display}}" href="{{route ('pagoPayPal')}}"><i class="fa"></i>Crear pago</a>
+                    <a class="btn btn-primary {{$display}}" href="{{route ('webpay')}}"><i class="fa"></i>Crear pago</a>
                 </td>
                 </tr>
             @endforeach
