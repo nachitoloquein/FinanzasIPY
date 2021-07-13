@@ -11,23 +11,6 @@ use App\Exports\VentasExport;
 
 class ListaDocumentosController extends Controller
 {
-    /*public function __invoke(){
-        
-        $documentos = \DB::table('documento')
-                    ->join('tipo_documento','documento.tipo_documento_idTipo_Documento','=','tipo_documento.idTipo_Documento')
-                    ->join('estado','documento.Estado_Venta_idEstado_Venta','=','idestado')
-                    ->join('tipo_movimiento','documento.tipo_movimiento_idTipo_movimiento','=','tipo_movimiento.idTipo_movimiento')
-                    ->select('documento.*', 'tipo_documento.Descripcion','tipo_movimiento.DescripcionM','estado.DescripcionE')
-                    ->orderBy('idDocumento')
-                    ->get();
-        $tipos = \DB::table('tipo_documento')
-                    ->select('tipo_documento.*')
-                    ->get();
-    return view('/dashboards/listaDocumentos',compact('documentos','tipos'));
-    }*/
-    
-
-
 
     public function __invoke(Request $request){
 
@@ -154,9 +137,6 @@ class ListaDocumentosController extends Controller
             
             
         }
-        
-            
-        
     return view('/dashboards/listaDocumentos', compact('documentos','tipo', 'tipos', 'tiposE', 'tipoE', 'tiposM', 'tipoM'));
     }
 
