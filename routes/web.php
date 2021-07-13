@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BoletaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ListaProductoController;
 use App\Http\Controllers\ListaDocumentosController;
@@ -28,6 +29,7 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/listaProductos', ListaProductoController::class)->name('listaP');
 Route::get('/listaDocumentos',ListaDocumentosController::class)->name('documentos');
+Route::get('/boletasoap',[BoletaController::class,'index'])->name('boleta');
 Route::get('/listaDocumentos/{tipo}',[ListaDocumentosController::class,'__invoke']);
 
 

@@ -17,7 +17,7 @@ class SoapController extends Controller
     public function index()
     {
         //Se llama al webService
-        $soap_client = new SoapClient('http://100.26.199.243:8000/api/?WSDL');
+        $soap_client = new SoapClient('http://44.194.209.248:8000/api/?wsdl');
         #$soap_client = new SoapClient('http://127.0.0.1:5000/api/web-service/?WSDL');
         //Se imprimen las funciones
         print_r(
