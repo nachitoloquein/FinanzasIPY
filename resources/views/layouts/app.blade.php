@@ -34,7 +34,7 @@
 <nav class="barra">
 
     <div class="d-flex flex-column p-4 text-white bg-dark barra" style="width: 280px">
-      <a class="navbar-brand " href="{{ url('/') }}">
+      <a class="navbar-brand " href="#">
             Finanzas
             <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
               <head>
@@ -83,7 +83,7 @@
         <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
           <span class="fs-4">Area finanzas</span>
         </a>
         <hr>

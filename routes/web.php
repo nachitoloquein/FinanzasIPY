@@ -24,7 +24,7 @@ use App\Http\Controllers\TransaccionController;
 
 //vistas
 Route::get('/', function () {return view('auth.login');});
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 Auth::routes();
 Route::get('/listaProductos', ListaProductoController::class)->name('listaP');
 Route::get('/listaDocumentos',ListaDocumentosController::class)->name('documentos');
