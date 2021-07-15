@@ -149,6 +149,13 @@ class ListaDocumentosController extends Controller
         return Excel::download(new VentasExport , 'documentos.xlsx');
     }
 
+    public function filtroBoton()
+    {
+        DB::table('documento')
+        ->where('documento.Estado_Venta_idEstado_Venta','=', 4)
+        ->where('Tipo_Movimiento_idTipo_Movimiento','=',1)
+        ->get();
+    }
    
 }
 

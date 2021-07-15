@@ -74,20 +74,23 @@
                 <td>{{ $documento->DescripcionM }}</td>
                 <td>{{ $documento->DescripcionE }}</td>
                 <td>
-                    <a class="btn btn-success" href="/crearCredito/"><i class="fa"></i>Crear nota de crédito</a>
-                    <a class="btn btn-success" href="/crearDebito/"><i class="fa"></i>Crear nota de débito</a>
-                    
                     <?php
                         $id = $documento->idDocumento;
                         $doc = $documento->Numero_Documento;
                         $valor = $documento->Valor_Total;
-                        $display = "d-none";
-                        if( $documento->Estado_Venta_idEstado_Venta == 3 ){
-                            $display = "d-inline-block";
+                        $debicredi = "d-none";
+                        $pago = "d-none";
+                        if( $documento->Estado_Venta_idEstado_Venta == 1){
+                            $debicredi = "d-inline-block";
                             
                         }
+                        elseif ($documento->Tipo_Movimiento_idTipo_Movimiento == 1 && $documento->Estado_Venta_idEstado_Venta == 4) {
+                            $pago = "d-inline-block";
+                        }
                     ?>
-                    <a class="btn btn-primary {{$display}}" href="{{route ('Webpay', $id)}}"><i class="fa"></i>Pagar</a>
+                    <a class="btn btn-success {{$debicredi}}" href="/crearCredito/"><i class="fa"></i>Crear nota de crédito</a>
+                    <a class="btn btn-success {{$debicredi}}" href="/crearDebito/"><i class="fa"></i>Crear nota de débito</a>
+                    <a class="btn btn-primary {{$pago}}" href="{{route ('Webpay', $id)}}"><i class="fa"></i>Pagar</a>
                 </td>
                 </tr>
             @endforeach
