@@ -46,6 +46,7 @@ class webpaycontroller extends Controller
             $documentos = Documento::find($id);
             $documentos->Estado_Venta_idEstado_Venta = 1;
             $documentos->save();
+            
         } else {
         // Transacción rechazada
         }
