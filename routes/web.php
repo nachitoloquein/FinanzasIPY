@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ListaProductoController;
 use App\Http\Controllers\ListaDocumentosController;
 use App\Http\Controllers\CrearCreditoController;
+use App\Http\Controllers\CrearDebitoController;
 use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductoController;
@@ -31,10 +32,11 @@ Route::get('/eliminarp/{id}',[ProductoController::class,'destroy'])->name('delet
 Route::post('/agregarDocumento',[DocumentoController::class,'store'])->name('agregarD');
 Route::get('/agregarDocumento',[DocumentoController::class,'index'])->name('indexDoc');
 Route::get('/listaDocumentos/{tipo}',[ListaDocumentosController::class,'__invoke']);
-Route::get('/crearCredito/{id}',[CrearCreditoController::class,'editar'])->name('CrearCredito');
-Route::post('/crearCredito',[CrearCreditoController::class,'store'])->name('notaC');
 Route::get('/historial',[HistorialController::class,'index'])->name('historial');
-
+Route::get('/crearCredito/{idDocumento}',[CrearCreditoController::class,'crearCredito'])->name('CrearCredito');
+Route::put('/crearCredito/{idDocumento}',[CrearCreditoController::class,'AgregarNotaCredito'])->name('AgregarNotaCredito');
+Route::get('/crearDebito/{idDocumento}',[CrearDebitoController::class,'crearDebito'])->name('CrearDebito');
+Route::put('/crearDebito/{idDocumento}',[CrearDebitoController::class,'AgregarNotaDebito'])->name('AgregarNotaDebito');
 //métodos
 Route::get('/agregarProveedor',[proveedorController::class,'index'])->name('agregarProveedor');
 Route::post('/agregarProveedor',[proveedorController::class,'store'])->name('agregarProveedor.lista');
