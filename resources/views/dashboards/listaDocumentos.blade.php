@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="input-group mb-3">
-<div class="form-row d-flex">
+<div class="card form-row d-flex" style="background-color: #eee;">
 <form class="form-group col-md-4" action="{{route('documentos')}}" method="GET">
     <div class="form-group col-md-4">
     <div class = "d-flex">
@@ -43,7 +43,7 @@
     <input class="btn btn-primary " type="submit" value="Aplicar">
 
     </form>
-    <a href="{{route('documentos.excel')}}">Exportar datos</a>
+    <a href="{{route('documentos.excel')}}" style="display: grid;">Exportar datos</a>
     </div>
   </div>
 <div class="card" style="background-color:#eee">
@@ -73,7 +73,7 @@
                 <td>{{ $documento->Descripcion }}</td>
                 <td>{{ $documento->DescripcionM }}</td>
                 <td>{{ $documento->DescripcionE }}</td>
-                <td>
+                <td style="display: grid;">
                     <?php
                         $id = $documento->idDocumento;
                         $doc = $documento->Numero_Documento;
