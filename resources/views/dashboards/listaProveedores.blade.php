@@ -27,7 +27,6 @@
             <td>{{$prov->Direccion}}</td>
             <td>
               <button class="btn btn-success" style="min-width: 200px; max-width:200px" onclick="location.href = '{{ route('editproveedor',$prov->idPersona) }}'"><i class="fa"></i>Modificar proveedor</button>
-              <button class="btn btn-danger" style="min-width: 200px; max-width:200px" onclick="location.href = '{{ route('deleteproveedor',$prov->idPersona) }}'"><i class="fa"></i>Eliminar proveedor</button>
             </td>
           </tr>
         @endforeach

@@ -110,13 +110,7 @@ class proveedorController extends Controller
      */
     public function destroy($id)
     {
-        $proveedor = Persona::find($id);
-        $proveedor->delete();
-
-        if($proveedor == null){
-            return view("error");
-        }    
-        return redirect()->route("listaProveedores");
+        //
     }
 
     public function obtenerDatos(){
