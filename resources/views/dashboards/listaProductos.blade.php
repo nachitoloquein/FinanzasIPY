@@ -4,7 +4,7 @@
 <div>
   <a href="{{route('soap')}}" class = "btn btn-primary">Actualizar lista</a>
 </div>
-<div class="card" style="background-color:#eee; min-width: 900px; max-width:900px;">
+<div class="card " style="background-color:#eee; min-width: 900px; max-width:900px; ">
 <div class = "card-body">
 <table class="table table-responsive" class="card" style="text-align:center; max-height: 600px" >
   <thead>

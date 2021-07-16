@@ -20,7 +20,7 @@ class webpaycontroller extends Controller
         $documentos = Documento::find($id);
         $doc = $documentos->Numero_Documento;
         $valor = $documentos->Valor_Total;
-        $response = $transaction->create($id,$doc, $valor, 'http://127.0.0.1:8000/confirmacion');
+        $response = $transaction->create($id,$doc, $valor, 'http://ec2-44-194-142-188.compute-1.amazonaws.com/confirmacion');
         
         $url = $response->getUrl();
         $token = $response->getToken();
@@ -46,12 +46,10 @@ class webpaycontroller extends Controller
             $documentos = Documento::find($id);
             $documentos->Estado_Venta_idEstado_Venta = 1;
             $documentos->save();
-            return redirect(route('documentos'));
         } else {
         // Transacción rechazada
-        
         }
         //return view('/dashboards/listaDocumentos');
-        
+        return redirect(route('documentos'));
     }
 }
