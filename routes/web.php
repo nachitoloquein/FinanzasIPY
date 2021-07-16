@@ -5,16 +5,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ListaProductoController;
 use App\Http\Controllers\ListaDocumentosController;
 use App\Http\Controllers\CrearCreditoController;
-use App\Http\Controllers\crearDebitoController;
 use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\lobyController;
 use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\PaginaPrincipalController;
 use App\Http\Controllers\proveedorController;
 use App\Http\Controllers\pagoController;
-use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SoapController;
 use App\Http\Controllers\jsonController;
 use App\Http\Controllers\DocumentoController;
@@ -24,7 +20,7 @@ use App\Http\Controllers\TransaccionController;
 
 //vistas
 Route::get('/', function () {return view('auth.login');});
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Auth::routes();
 Route::get('/listaProductos', ListaProductoController::class)->name('listaP');
 Route::get('/listaDocumentos',ListaDocumentosController::class)->name('documentos');
@@ -40,7 +36,6 @@ Route::post('/crearCredito',[CrearCreditoController::class,'store'])->name('nota
 Route::get('/historial',[HistorialController::class,'index'])->name('historial');
 
 //métodos
-Route::post('/home',PaginaPrincipalController::class);
 Route::get('/agregarProveedor',[proveedorController::class,'index'])->name('agregarProveedor');
 Route::post('/agregarProveedor',[proveedorController::class,'store'])->name('agregarProveedor.lista');
 Route::get('/listaProveedores',[proveedorController::class,'obtenerDatos'])->name('listaProveedores');

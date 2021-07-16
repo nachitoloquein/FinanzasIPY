@@ -31,11 +31,15 @@
     <link href="{{ asset('css/material-dashboard.css.map') }}" rel="stylesheet">
     <link href="{{ asset('css/material-dashboard.min.css') }}" rel="stylesheet">
 </head>
-<nav class="barra">
+<header class="barra">
 
-    <div class="d-flex flex-column p-4 text-white bg-dark barra" style="width: 280px">
-      <a class="navbar-brand " href="#">
-            Finanzas
+    <div class="d-flex flex-column p-4 text-white bg-blue-600 barra" style="width: 280px">
+      <a href="/">
+        <img src="{{asset('img/logo.svg')}}"alt="Lider">
+      </a>
+      
+      <a class="navbar-brand " >
+            <h3>Finanza</h3>
             <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
               <head>
                   <!-- CSRF Token -->
@@ -49,21 +53,21 @@
                   @guest
                     @if (Route::has('login'))
                       <div >
-                        <a  href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a  href="{{ route('login') }}">{{ __('Ingresar') }}</a>
                       </div>
                     @endif
               
                     @if (Route::has('register'))
-                        <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a href="{{ route('register') }}">{{ __('Registrar') }}</a>
               
                     @endif
                       @else
                           <hr>
-                          <a href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Bienvenido :
+                          <a role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Bienvenido :
                             {{ Auth::user()->name }}
                               </a>
                               <div >
-                                <a  href="{{ route('logout') }}"
+                                <a  href="{{ route('logout') }}" class="text-white"
                                   onclick="event.preventDefault();
                                   document.getElementById('logout-form').submit();">
                                   {{ __('Salir') }}
@@ -80,10 +84,7 @@
               </html>
       </a>
     <hr>
-        <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
           <span class="fs-4">Area finanzas</span>
         </a>
         <hr>
@@ -114,10 +115,13 @@
         <hr>
       </div>
     </div>
-</nav>
-
-<div class="centro" style="width: 50rem;">
+</header>
+<body style="background-image: url(https://cdn.crello.com/api/media/medium/169306418/stock-photo-repetitive-pattern-of-envelopes)">
+<div class="centro" style="width: 50%;  display: flex; flex-direction: column;
+align-items: center">
     @yield('content')
-</div>
+</div>  
+</body>
+
 </html>
 

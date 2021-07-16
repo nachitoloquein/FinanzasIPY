@@ -15,7 +15,7 @@
      <td>{{ $Cantida->detalle_documento}}</td>
      </tr>
      </tbody>
-   @endforeach</span></p>
+     @endforeach</span></p>
   </div>
 </div>
 

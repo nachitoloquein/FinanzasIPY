@@ -27,7 +27,7 @@
               </div>
               @if ($errors->has('email'))
                 <div id="email-error" class="error text-danger pl-3" for="email" style="display: block;">
-                  <strong>{{ $errors->first('email') }}</strong>
+                  <strong>"{{ _('Direccion o Contraseña incorrecta')}}"</strong>
                 </div>
               @endif
             </div>
