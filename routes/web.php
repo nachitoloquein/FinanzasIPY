@@ -35,7 +35,7 @@ Route::get('/eliminarp/{id}',[ProductoController::class,'destroy'])->name('delet
 Route::post('/agregarDocumento',[DocumentoController::class,'store'])->name('agregarD');
 Route::get('/agregarDocumento',[DocumentoController::class,'index'])->name('indexDoc');
 Route::get('/listaDocumentos/{tipo}',[ListaDocumentosController::class,'__invoke']);
-Route::get('/crearCredito',[CrearCreditoController::class,'index'])->name('CrearCredito');
+Route::get('/crearCredito/{id}',[CrearCreditoController::class,'editar'])->name('CrearCredito');
 Route::post('/crearCredito',[CrearCreditoController::class,'store'])->name('notaC');
 Route::get('/historial',[HistorialController::class,'index'])->name('historial');
 

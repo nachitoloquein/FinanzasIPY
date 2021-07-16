@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Documento;
+use App\Models\documento;
 use Illuminate\Support\Facades\DB;
 
 class crearCreditoController extends Controller
 {
+    /*
     public function index(){
         return view('dashboards.crearCredito');
     }
-
+    */
 
     public function store(Request $request)
     {
@@ -28,5 +29,11 @@ class crearCreditoController extends Controller
         $documento->save();
         return redirect()->route('documentos');
 
+    }
+
+    public function editar($id)
+    {
+        $doc = documento::find($id);
+        return view('dashboards.crearCredito', compact('doc'));
     }
 }

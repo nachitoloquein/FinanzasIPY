@@ -88,7 +88,7 @@
                             $pago = "d-inline-block";
                         }
                     ?>
-                    <a class="btn btn-success {{$debicredi}}" href="/crearCredito/"><i class="fa"></i>Crear nota de crédito</a>
+                    <a class="btn btn-success {{$debicredi}}" href="{{route ('CrearCredito',$id)}}"><i class="fa"></i>Crear nota de crédito</a>
                     <a class="btn btn-success {{$debicredi}}" href="/crearDebito/"><i class="fa"></i>Crear nota de débito</a>
                     <a class="btn btn-primary {{$pago}}" href="{{route ('Webpay', $id)}}"><i class="fa"></i>Pagar</a>
                 </td>
