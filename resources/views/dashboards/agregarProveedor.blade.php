@@ -3,7 +3,7 @@
 @section('content')
    
     <body>
-        <form action="{{route('agregarProveedor.lista')}}" method="POST">
+        <form action="{{route('agregarProveedor.lista')}}" style="background-color: #eee;" class="card" method="POST">
             @csrf
             <div class="form-group">
                 <label for="razonSocial">Razon social</label>
