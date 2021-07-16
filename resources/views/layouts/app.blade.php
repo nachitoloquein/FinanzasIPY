@@ -35,7 +35,7 @@
 
     <div class="d-flex flex-column p-4 text-white bg-blue-600 barra" style="width: 280px">
       <a href="/">
-        <img src="{{asset('img/logo.svg')}}"alt="Lider">
+        <img src="{{asset('img/logo.svg')}}"alt="Lider" class="img-fluid">
       </a>
       
       <a class="navbar-brand " >

@@ -2,8 +2,8 @@
 
 @section('content')
 
-<div class="input-group mb-3">
-<div class="card form-row d-flex" style="background-color: #eee;">
+<div class="input-group mb-3 col-md-auto">
+<div class="card form-row d-flex col-md-auto" style="background-color: #eee; ">
 <form class="form-group col-md-4" action="{{route('documentos')}}" method="GET">
     <div class="form-group col-md-4">
     <div class = "d-flex">
@@ -18,7 +18,7 @@
 
     <div class = "d-flex">
     <label style="min-width:200px;">Filtro por tipo de movimiento</label>
-    <select name='movimiento' id='mov' value= "{{$tipoM}}" class="form-control" style="min-width:200px;">
+    <select name='movimiento' id='mov' value= "{{$tipoM}}" class="form-control" style="min-width:200px; ">
     <option selected >Seleccione...</option>
     @foreach($tiposM as $tiposM)
         <option value="{{ $tiposM->idTipo_Movimiento}}">{{ $tiposM->DescripcionM }}</option>
@@ -43,10 +43,10 @@
     <input class="btn btn-primary " type="submit" value="Aplicar">
 
     </form>
-    <a href="{{route('documentos.excel')}}" style="display: grid;">Exportar datos</a>
+    <a href="{{route('documentos.excel')}}" style="display: grid; ">Exportar datos</a>
     </div>
   </div>
-<div class="card" style="background-color:#eee">
+<div class="card" style="background-color:#eee; ">
 <div class="card-body">
 <table class="table table-responsive">
     <thead>
@@ -84,7 +84,7 @@
                             $debicredi = "d-inline-block";
                             
                         }
-                        elseif ($documento->Tipo_Movimiento_idTipo_Movimiento == 1 && $documento->Estado_Venta_idEstado_Venta == 4) {
+                        elseif ($documento->Tipo_Movimiento_idTipo_Movimiento == 1 && $documento->Estado_Venta_idEstado_Venta == 3) {
                             $pago = "d-inline-block";
                         }
                     ?>
