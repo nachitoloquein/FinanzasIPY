@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.main')
 @section('content')
-<body background="https://onlinezebra.com/wp-content/uploads/2019/01/error-404-not-found.jpg" style="background-size:cover ">
+<body  style="background-image: url(https://onlinezebra.com/wp-content/uploads/2019/01/error-404-not-found.jpg)">
 <article style="margin-top: !null;">
     <section>     
         <h1 class="text-center texto1">Lo sentimos pero los desarrolladores no alcanzaron a crear esta ruta</h1>
