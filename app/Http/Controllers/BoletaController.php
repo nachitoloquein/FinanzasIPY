@@ -286,26 +286,43 @@ class BoletaController extends Controller
         } elseif ($elementos == 7) {
             $Boletajson = DB::table('documento')
             ->select('idDocumento','Nombre_usuario','Fecha_emision','Nombre_producto','Cantidad','Valor_Total_Neto','Valor_Total','DescripcionE')
-            ->leftJoin('detalle_documento','idDocumento','=','Documentos_idDocumentos')
+            ->leftJoin('detalle_documento','idDocumento','=','idDetalle_Documento')
             ->rightJoin('usuario','idUsuario','=','Usuario_idUsuario')
             ->leftJoin('producto','idProducto','=','Producto_idProducto')
-            ->orderBy('Fecha_emision','idDocumento')
-            ->groupBy('idDocumento','Nombre_producto')
+            ->join('estado','idEstado','=','Estado_Venta_idEstado_Venta')
+            ->orderBy('Fecha_emision','desc','idDocumento','desc')
+            ->groupBy('idDocumento','Nombre_usuario','Fecha_emision','Nombre_producto','Cantidad','Valor_Total_Neto','Valor_Total','DescripcionE')
             ->get();
             echo json_encode($Boletajson);
             return redirect()->route('listaP');
         }
-        return redirect()->route('listaP');
-
         $Boletajson = DB::table('documento')
-                        ->select('idDocumento','Nombre_usuario','Fecha_emision','Nombre_producto','Cantidad','Valor_Total_Neto','Valor_Total','DescripcionE')
-                        ->leftJoin('detalle_documento','idDocumento','=','Documentos_idDocumentos')
-                        ->rightJoin('usuario','idUsuario','=','Usuario_idUsuario')
-                        ->leftJoin('producto','idProducto','=','Producto_idProducto')
-                        ->orderBy('Fecha_emision','idDocumento')
-                        ->groupBy('idDocumento','Nombre_producto')
-                        ->get();
-                        echo json_encode($Boletajson);
+        ->select('idDocumento','Nombre_usuario','Fecha_emision','Nombre_producto','Cantidad','Valor_Total_Neto','Valor_Total','DescripcionE')
+        ->leftJoin('detalle_documento','idDocumento','=','idDetalle_Documento')
+        ->rightJoin('usuario','idUsuario','=','Usuario_idUsuario')
+        ->leftJoin('producto','idProducto','=','Producto_idProducto')
+        ->join('estado','idEstado','=','Estado_Venta_idEstado_Venta')
+        ->orderBy('Fecha_emision','desc','idDocumento','desc')
+        ->groupBy('idDocumento','Nombre_usuario','Fecha_emision','Nombre_producto','Cantidad','Valor_Total_Neto','Valor_Total','DescripcionE')
+        ->get();
+        echo json_encode($Boletajson);
+        return redirect()->route('listaP');
         print_r('se fue todo a la b');
     }
+
+    public function json()
+{
+    $Boletajson = DB::table('documento')
+    ->select('idDocumento','Nombre_usuario','Fecha_emision','Nombre_producto','Cantidad','Valor_Total_Neto','Valor_Total','DescripcionE')
+    ->leftJoin('detalle_documento','idDocumento','=','idDetalle_Documento')
+    ->rightJoin('usuario','idUsuario','=','Usuario_idUsuario')
+    ->leftJoin('producto','idProducto','=','Producto_idProducto')
+    ->join('estado','idEstado','=','Estado_Venta_idEstado_Venta')
+    ->orderBy('Fecha_emision','desc','idDocumento','desc')
+    ->groupBy('idDocumento','Nombre_usuario','Fecha_emision','Nombre_producto','Cantidad','Valor_Total_Neto','Valor_Total','DescripcionE')
+    ->get();
+    echo json_encode($Boletajson);
 }
+}
+
+

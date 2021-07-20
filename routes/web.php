@@ -51,6 +51,7 @@ Route::get('soap',[SoapController::class, 'index'])->name('soap');
 Route::get('json',[jsonController::class,'index'])->name('json');
 Route::get('/jsonProveedores',[JsonProveedoresController::class,'index'])->name('jsonProveedores');
 Route::get('/boletasoap',[BoletaController::class,'index'])->name('boleta');
+Route::get('/boletajson',[BoletaController::class,'json'])->name('boletajson');
 
 //ruta de pago
 Route::get('/webpay/{id}',[webpaycontroller::class, 'index'])->name('Webpay');
