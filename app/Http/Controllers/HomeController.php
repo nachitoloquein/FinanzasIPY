@@ -29,6 +29,7 @@ class HomeController extends Controller
 
         $Proveedor = DB::table('persona')
         ->Select( DB::raw("count(Nombre) as Cantidad_Proveedor"))
+        ->where('Tipo_persona_idTipo_persona','=','3')
         ->get();
 
         return view ('estadistica',compact('Cantidad','Proveedor'));
