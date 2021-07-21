@@ -24,7 +24,7 @@ class HomeController extends Controller
         $Cantidad = DB::table('detalle_documento')
         ->Select( DB::raw("count(idDetalle_documento) as detalle_documento"))
         ->addSelect(DB::raw("sum(Cantidad) as Stock"))
-        ->addSelect(DB::raw("sum(Valor_Total_Bruto) as Ventas"))
+        ->addSelect(DB::raw("sum((Valor_Total_Bruto)*(Cantidad)) as Ventas"))  
         ->get();
 
         $Proveedor = DB::table('persona')

@@ -22,4 +22,17 @@ class VentasExport implements FromCollection
 
         return $data;
     }
+
+    public function headings(): array
+    {
+        return [
+            'Numero Documento',
+            'Fecha Emision',
+            'Valor Total',
+            'Detalle',
+            'Tipo Documento',
+            'Tipo Movimiento',
+            'Estado Documento',
+        ];
+    }
 }
