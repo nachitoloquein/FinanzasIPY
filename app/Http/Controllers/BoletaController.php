@@ -24,9 +24,6 @@ class BoletaController extends Controller
         #$soap_client = new SoapClient('http://127.0.0.1:5000/api/web-service/?WSDL');
         $soap_client->__getLastRequest();
         //Se imprimen las funciones
-        print_r(
-            $soap_client->__getFunctions()
-        );
         $respuesta = $soap_client->__soapCall("GenerarBoleta", array());
         $xml = $respuesta->GenerarBoletaResult;
         //Se procesa el xml
@@ -65,10 +62,12 @@ class BoletaController extends Controller
                 $nick1 .= $a["apellido_cliente"];
                 $idUsuario = $a['id_cliente'];
                 $Nusuario = $nick1;
+
                 foreach ($c as $row2) {
                     $count = $count + 1;
                     $Producto_idProducto = $c['id_producto'];
                     $Precio = $c['precio_producto'];
+                    $valor_neto = $c['sub_total'];
                     print_r($count);
                     $Cantidad = $c['cantidad_producto'];
                 }
@@ -101,6 +100,7 @@ class BoletaController extends Controller
                         $DeDoc = new detalle_documento();
                         $DeDoc->Documentos_idDocumentos = $id;
                         $DeDoc->Valor_Total_Bruto = $Valor_Total;
+                        $DeDoc->Valor_Total_Neto = $valor_neto;
                         $DeDoc->Cantidad = $Cantidad;
                         $DeDoc->Producto_idProducto = $Producto_idProducto;
                         $DeDoc->idDetalle_Documento = $id;
@@ -147,6 +147,7 @@ class BoletaController extends Controller
                         $DeDoc = new detalle_documento();
                         $DeDoc->Documentos_idDocumentos = $id;
                         $DeDoc->Valor_Total_Bruto = $Valor_Total;
+                        $DeDoc->Valor_Total_Neto = $valor_neto;
                         $DeDoc->Cantidad = $Cantidad;
                         $DeDoc->Producto_idProducto = $Producto_idProducto;
                         $DeDoc->idDetalle_Documento = $id;
@@ -156,6 +157,7 @@ class BoletaController extends Controller
                         $DeDoc = detalle_documento::find($id);
                         $DeDoc->Documentos_idDocumentos = $id;
                         $DeDoc->Valor_Total_Bruto = $Valor_Total;
+                        $DeDoc->Valor_Total_Neto = $valor_neto;
                         $DeDoc->Cantidad = $Cantidad;
                         $DeDoc->Producto_idProducto = $Producto_idProducto;
                         $DeDoc->idDetalle_Documento = $id;
@@ -166,10 +168,11 @@ class BoletaController extends Controller
                 }
             }
         } elseif ($elementos > 13) {
+            $a = $salida['Boleta'];
+            $b = $a['detalle'];
+            $c = $b['Detalle'];
             foreach ($output as $row) {
-                $a = $salida['Boleta'];
-                $b = $a['detalle'];
-                $c = $b['Detalle'];
+                print_r($c);
                 $count = $count + 1;
                 $id = $count;
                 $Numero_Documento = $id;
@@ -186,12 +189,13 @@ class BoletaController extends Controller
                     $count = $count + 1;
                     $Producto_idProducto = $row2['id_producto'];
                     $Precio = $row2['precio_producto'];
-                    print_r($count);
+                    $valor_neto = $row2['sub_total'];
+                    print_r($row2['sub_total']);
                     $Cantidad = $row2['cantidad_producto'];
 
                     $usuarios = Usuario::find($idUsuario);
                     $documentos = Documento::find($id);
-                    $DeDocs = detalle_documento::find($count);
+                    $DeDocs = detalle_documento::find($id);
                     if ($usuarios == null) {
                         $usuario = new Usuario();
                         $usuario->idUsuario = $idUsuario;
@@ -218,6 +222,7 @@ class BoletaController extends Controller
                             $DeDoc = new detalle_documento();
                             $DeDoc->Documentos_idDocumentos = $id;
                             $DeDoc->Valor_Total_Bruto = $Valor_Total;
+                            $DeDoc->Valor_Total_Neto = $row2['sub_total'];
                             $DeDoc->Cantidad = $Cantidad;
                             $DeDoc->Producto_idProducto = $Producto_idProducto;
                             $DeDoc->idDetalle_Documento = $count;
@@ -264,65 +269,50 @@ class BoletaController extends Controller
                             $DeDoc = new detalle_documento();
                             $DeDoc->Documentos_idDocumentos = $id;
                             $DeDoc->Valor_Total_Bruto = $Valor_Total;
+                            $DeDoc->Valor_Total_Neto = $valor_neto;
                             $DeDoc->Cantidad = $Cantidad;
                             $DeDoc->Producto_idProducto = $Producto_idProducto;
                             $DeDoc->idDetalle_Documento = $count;
-                            print_r('añadí un nuevo detalleDoc');
-                            $DeDoc->save();
+                            if ($DeDoc->num_rows > 0) {
+                                print_r('Actualicé detalleDoc');
+                                echo '<br/>';
+                                $DeDoc->save();
+                            } else {
+                                echo '<br/>';
+                                print_r('añadí un nuevo detalleDoc');
+                                $DeDoc->update();
+                            }
                         } else {
                             $DeDoc = detalle_documento::find($id);
+                            echo '<br/>';
+                            print_r($id);
+                            echo '<br/>';
                             $DeDoc->Documentos_idDocumentos = $id;
                             $DeDoc->Valor_Total_Bruto = $Valor_Total;
+                            $DeDoc->Valor_Total_Neto = $valor_neto;
                             $DeDoc->Cantidad = $Cantidad;
                             $DeDoc->Producto_idProducto = $Producto_idProducto;
                             $DeDoc->idDetalle_Documento = $id;
+                            $DeDoc->save();
                             print_r('Actualice un detalleDoc');
                             echo '<br/>';
-                            $DeDoc->save();
                         }
                     }
                 }
             }
         } elseif ($elementos == 7) {
-            $Boletajson = DB::table('documento')
-            ->select('idDocumento','Nombre_usuario','Fecha_emision','Nombre_producto','Cantidad','Valor_Total_Neto','Valor_Total','DescripcionE')
-            ->leftJoin('detalle_documento','idDocumento','=','idDetalle_Documento')
-            ->rightJoin('usuario','idUsuario','=','Usuario_idUsuario')
-            ->leftJoin('producto','idProducto','=','Producto_idProducto')
-            ->join('estado','idEstado','=','Estado_Venta_idEstado_Venta')
-            ->orderBy('Fecha_emision','desc','idDocumento','desc')
-            ->groupBy('idDocumento','Nombre_usuario','Fecha_emision','Nombre_producto','Cantidad','Valor_Total_Neto','Valor_Total','DescripcionE')
-            ->get();
-            echo json_encode($Boletajson);
-            return redirect()->route('listaP');
         }
-        $Boletajson = DB::table('documento')
-        ->select('idDocumento','Nombre_usuario','Fecha_emision','Nombre_producto','Cantidad','Valor_Total_Neto','Valor_Total','DescripcionE')
-        ->leftJoin('detalle_documento','idDocumento','=','idDetalle_Documento')
-        ->rightJoin('usuario','idUsuario','=','Usuario_idUsuario')
-        ->leftJoin('producto','idProducto','=','Producto_idProducto')
-        ->join('estado','idEstado','=','Estado_Venta_idEstado_Venta')
-        ->orderBy('Fecha_emision','desc','idDocumento','desc')
-        ->groupBy('idDocumento','Nombre_usuario','Fecha_emision','Nombre_producto','Cantidad','Valor_Total_Neto','Valor_Total','DescripcionE')
-        ->get();
-        echo json_encode($Boletajson);
-        return redirect()->route('listaP');
-        print_r('se fue todo a la b');
     }
 
     public function json()
-{
-    $Boletajson = DB::table('documento')
-    ->select('idDocumento','Nombre_usuario','Fecha_emision','idUsuario','Nombre_producto','Cantidad','Valor_Total_Neto','Valor_Total','DescripcionE')
-    ->leftJoin('detalle_documento','idDocumento','=','idDetalle_Documento')
-    ->rightJoin('usuario','idUsuario','=','Usuario_idUsuario')
-    ->leftJoin('producto','idProducto','=','Producto_idProducto')
-    ->join('estado','idEstado','=','Estado_Venta_idEstado_Venta')
-    ->orderBy('Fecha_emision','desc','idDocumento','desc')
-    ->groupBy('idDocumento','Nombre_usuario','Fecha_emision','Nombre_producto','Cantidad','Valor_Total_Neto','Valor_Total','DescripcionE')
-    ->get();
-    echo json_encode($Boletajson);
+    {
+        $Boletajson = DB::table('documento')
+            ->select('idDocumento', 'Nombre_usuario', 'Fecha_emision', 'Nombre_producto', 'Cantidad', 'Valor_Total_Neto', 'Valor_Total', 'DescripcionE')
+            ->leftJoin('detalle_documento', 'idDocumento', '=', 'idDetalle_Documento')
+            ->rightJoin('usuario', 'idUsuario', '=', 'Usuario_idUsuario')
+            ->leftJoin('producto', 'idProducto', '=', 'Producto_idProducto')
+            ->Join('estado', 'idEstado', '=', 'Estado_Venta_idEstado_Venta')
+            ->get();
+        echo json_encode($Boletajson);
+    }
 }
-}
-
-
