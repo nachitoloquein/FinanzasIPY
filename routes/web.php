@@ -34,9 +34,9 @@ Route::get('/agregarDocumento',[DocumentoController::class,'index'])->name('inde
 Route::get('/listaDocumentos/{tipo}',[ListaDocumentosController::class,'__invoke']);
 Route::get('/historial',[HistorialController::class,'index'])->name('historial');
 Route::get('/crearCredito/{idDocumento}',[CrearCreditoController::class,'crearCredito'])->name('CrearCredito');
-Route::put('/crearCredito/{idDocumento}',[CrearCreditoController::class,'AgregarNotaCredito'])->name('AgregarNotaCredito');
+Route::post('/crearCredito/{id}',[CrearCreditoController::class,'update'])->name('updateDoc');
 Route::get('/crearDebito/{idDocumento}',[CrearDebitoController::class,'crearDebito'])->name('CrearDebito');
-Route::put('/crearDebito/{idDocumento}',[CrearDebitoController::class,'AgregarNotaDebito'])->name('AgregarNotaDebito');
+Route::post('/crearDebito/{id}',[CrearDebitoController::class,'update'])->name('AgregarNotaDebito');
 //métodos
 Route::get('/agregarProveedor',[proveedorController::class,'index'])->name('agregarProveedor');
 Route::post('/agregarProveedor',[proveedorController::class,'store'])->name('agregarProveedor.lista');

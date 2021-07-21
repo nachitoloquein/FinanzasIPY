@@ -301,17 +301,20 @@ class BoletaController extends Controller
                 }
             }
         } elseif ($elementos == 7) {
+            return redirect()->route('documentos');
         }
+        return redirect()->route('documentos');
     }
 
     public function json()
     {
         $Boletajson = DB::table('documento')
-            ->select('idDocumento', 'Nombre_usuario', 'Fecha_emision', 'Nombre_producto','idUsuario', 'Cantidad', 'Valor_Total_Neto', 'Valor_Total', 'DescripcionE')
+            ->select('Numero_Documento', 'Nombre_usuario', 'Fecha_emision', 'Nombre_producto', 'Cantidad', 'Valor_Total_Neto', 'Valor_Total', 'DescripcionE','idUsuario')
             ->leftJoin('detalle_documento', 'idDocumento', '=', 'idDetalle_Documento')
             ->rightJoin('usuario', 'idUsuario', '=', 'Usuario_idUsuario')
             ->leftJoin('producto', 'idProducto', '=', 'Producto_idProducto')
             ->Join('estado', 'idEstado', '=', 'Estado_Venta_idEstado_Venta')
+            ->where('Tipo_Documento_idTipo_Documento','=','2')
             ->get();
         echo json_encode($Boletajson);
     }
