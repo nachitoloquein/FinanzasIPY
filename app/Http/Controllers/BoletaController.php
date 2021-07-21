@@ -307,7 +307,7 @@ class BoletaController extends Controller
     public function json()
     {
         $Boletajson = DB::table('documento')
-            ->select('idDocumento', 'Nombre_usuario', 'Fecha_emision', 'Nombre_producto', 'Cantidad', 'Valor_Total_Neto', 'Valor_Total', 'DescripcionE')
+            ->select('idDocumento', 'Nombre_usuario', 'Fecha_emision', 'Nombre_producto','idUsuario', 'Cantidad', 'Valor_Total_Neto', 'Valor_Total', 'DescripcionE')
             ->leftJoin('detalle_documento', 'idDocumento', '=', 'idDetalle_Documento')
             ->rightJoin('usuario', 'idUsuario', '=', 'Usuario_idUsuario')
             ->leftJoin('producto', 'idProducto', '=', 'Producto_idProducto')
