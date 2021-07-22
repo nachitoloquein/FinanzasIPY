@@ -47,6 +47,11 @@
         <a href="{{route('documentos.excel')}}" style="display: grid; ">Exportar datos</a>
     </div>
 </div>
+
+<div>
+    <a href="{{route('boleta')}}" class = "btn btn-primary">Actualizar documentos</a>
+  </div>
+
 <div class="card" style="background-color:#eee; ">
     <div class="card-body">
         <table class="table table-responsive">
@@ -80,7 +85,7 @@
                         $Fecha_emision=$documento->Fecha_emision;
                         $debicredi = "d-none";
                         $pago = "d-none";
-                        if( $documento->Estado_Venta_idEstado_Venta == 1 && ($documento->Tipo_Documento_idTipo_Documento == 1 or $documento->Tipo_Documento_idTipo_Documento == 2) && $documento->activo==1){
+                        if( $documento->Estado_Venta_idEstado_Venta == 1 && ($documento->Tipo_Documento_idTipo_Documento == 1 or $documento->Tipo_Documento_idTipo_Documento == 2) && $documento->Activo==1){
                             $debicredi = "d-inline-block";
                             
                         }

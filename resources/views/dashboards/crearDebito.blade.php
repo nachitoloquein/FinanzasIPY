@@ -2,6 +2,8 @@
 @section('content')
 
 <body>
+  <div class="card" style="background-color:#eee;">
+    <div class="card-body">
   <form action="{{route('AgregarNotaDebito',$doc)}}" method="POST" class="container">
     @csrf
     <div class="form-group">
@@ -19,11 +21,14 @@
     </div>
     <div class="form-group">
       <label for="formGroupExampleInput" class="text-dark">Detalle</label>
-      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese el motido" name="Detalle"
+      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese el motivo" name="Detalle"
         value="">
     </div>
     <input class="btn btn-primary " type="submit" value="Modificar Precio">
     <a class="btn btn-danger" href="/listaDocumentos/"><i class="fa"></i>Cancelar</a>
   </form>
+    </div>
+  </div>
+
 </body>
 @endsection

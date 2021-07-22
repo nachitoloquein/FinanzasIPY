@@ -110,6 +110,12 @@
               Modificar Precio
             </a>
           </li>
+          <li>
+            <a href="{{route('agregarD')}}" class="nav-link text-white">
+    
+              Agregar documento
+            </a>
+          </li>
           </li>
         </ul>
         <hr>

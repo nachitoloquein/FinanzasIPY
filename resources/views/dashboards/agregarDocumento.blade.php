@@ -3,6 +3,11 @@
 @section('content')
 
 <body>
+    <div class="card" style="background-color:#eee;">
+        <div class="card-body">
+            <h5>
+                Agregar Documento
+            </h5>
     <form action="{{route('agregarD')}}" method="POST">
         @csrf
         <div class="form-group">
@@ -46,6 +51,8 @@
         <input class= "btn btn-primary" type="submit" value="Agregar documento" >
         <a class="btn btn-danger" href="{{route('documentos')}}"><i class="fa"></i>Cancelar</a>
     </form>
+</div>
+</div>
 </body>
 
 @endsection
