@@ -43,10 +43,8 @@ class BoletaController extends Controller
             $Total = $ass['total'];
             $E_Pago = $ass['estadoPago'];
             $idUsuario = $ass['id_cliente'];
-            $N_doc = $ass['numero'];
+            $N_doc = $ass['apellido_cliente'];
             $nick1 = $ass["nombre_cliente"];
-            $nick1 .= '-';
-            $nick1 .= $ass["apellido_cliente"];
             $Nusuario = $nick1;
             $usuarios = Usuario::find($idUsuario);
             $documentos = Documento::all();
@@ -78,8 +76,11 @@ class BoletaController extends Controller
                 $documentos->Usuario_idUsuario = $idUsuario;
                 $documentos->Estado_Venta_idEstado_Venta = $E_Pago;
                 $documentos->save();
+                return redirect()->route('documentos');
             }
+            return redirect()->route('documentos');
         }
+        return redirect()->route('documentos');
     }
 
     public function json()
